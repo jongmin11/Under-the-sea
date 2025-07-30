@@ -1,38 +1,50 @@
 using UnityEngine;
 
-/// <summary>
-/// (ÇÑÁ¾¹Î)ÇÃ·¹ÀÌ¾î¿Í Ãæµ¹ ½Ã ÀÏÁ¤ ½Ã°£ µ¿¾È ¼Óµµ¸¦ º¯È­½ÃÅµ´Ï´Ù.
+// < summary >
+// (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ ï¿½æµ¹ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½Åµï¿½Ï´ï¿½.
 /// </summary>
 [RequireComponent(typeof(Collider2D))]
-public class SpeedItem2D : MonoBehaviour
+public class SpeedItem : MonoBehaviour
 {
     public enum SpeedType { SpeedUp, SpeedDown }
 
-    [Header("½ºÇÇµå ¼³Á¤")]
+    [Header("ï¿½ï¿½ï¿½Çµï¿½ ï¿½ï¿½ï¿½ï¿½")]
     public SpeedType type = SpeedType.SpeedUp;
-    [Header("¼Óµµ Áõ°¡ ¹èÀ² (¿¹:1.5 == 50%)")]
+    [Header("ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½:1.5 == 50%)")]
     public float multiplier = 1.5f;
-    [Tooltip("¼Óµµ °¨¼Ò ¹èÀ² (¿¹: 0.5 = Àý¹Ý ¼Óµµ)")]
+    [Tooltip("ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½: 0.5 = ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½)")]
     public float speedDownMultiplier = 0.5f;
-    [Header("Áö¼Ó½Ã°£ ÃÊ´ÜÀ§")]
+    [Header("ï¿½ï¿½ï¿½Ó½Ã°ï¿½ ï¿½Ê´ï¿½ï¿½ï¿½")]
     public float duration = 3f;
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (!other.CompareTag("Player")) return;
+    //private void OnTriggerEnter2D(Collider2D other)
+    //{
+    //    if (!other.CompareTag("Player")) return;
 
-        var movement = other.GetComponent<PlayerMove>(); // ÇÃ·¹ÀÌ¾î½ºÅ©¸³Æ®
-        if (movement == null)
-        {
-            Debug.LogWarning("SpeedItem: PlayerMove ½ºÅ©¸³Æ®¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù.");
-            return;
-        }
+        //var movement = other.GetComponent<PlayerMove>(); // ï¿½Ã·ï¿½ï¿½Ì¾î½ºÅ©ï¿½ï¿½Æ®
+        //if (movement == null)
+        //{
+            //Debug.LogWarning("SpeedItem: PlayerMove ï¿½ï¿½Å©ï¿½ï¿½Æ®ï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
+            //return;
 
-        float effectMultiplier = (type == SpeedType.SpeedUp)
-            ? multiplier
-            : speedDownMultiplier;
+    //    var movement = other.GetComponent<PlayerMove>(); // ï¿½Ã·ï¿½ï¿½Ì¾î½ºÅ©ï¿½ï¿½Æ®
+    //    if (movement == null)
+    //    {
+    //        Debug.LogWarning("SpeedItem: PlayerMove ï¿½ï¿½Å©ï¿½ï¿½Æ®ï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
+    //        return;
+    //    }
 
-        movement.ApplySpeedEffect(effectMultiplier, duration);
+
+    //    float effectMultiplier = (type == SpeedType.SpeedUp)
+    //        ? multiplier
+    //        : speedDownMultiplier;
+
+
+        //movement.ApplySpeedEffect(effectMultiplier, duration);
         Destroy(gameObject);
     }
-}
+
+    //    movement.ApplySpeedEffect(effectMultiplier, duration);
+    //    Destroy(gameObject);
+    //}
+
