@@ -26,7 +26,7 @@ public class ScoreManager : MonoBehaviour
         }
         else
         {
-            Destroy(instance);
+            Destroy(gameObject);
         }
     }
 
