@@ -6,7 +6,7 @@ using UnityEngine;
 /// (한종민)플레이어가 코인과 충돌 시 점수를 증가시키는 아이템 스크립트입니다.
 /// ScoreManager가 존재해야 하며, 플레이어는 "Player" 태그가 설정되어 있어야 합니다.
 /// </summary>
-[RequireComponent(typeof(Collider))]
+[RequireComponent(typeof(Collider2D))]
 public class CoinItemDB : MonoBehaviour
 {
     [Header("코인 설정")]
