@@ -17,6 +17,7 @@ public class ScoreManager : MonoBehaviour
     const string HighScoreKey = "HighScore";
 
     public Text TestScore;
+    
 
     public void Awake()
     {
@@ -50,6 +51,10 @@ public class ScoreManager : MonoBehaviour
         if (TestScore != null)
         {
             TestScore.text = CurrentScore.ToString();
+        }
+        else if (TestScore == null) 
+        {
+            Debug.LogError("ScoreManager:인스펙터에서 텍스트연결 확인해주세요");
         }
 
     }
