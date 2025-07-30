@@ -1,10 +1,10 @@
 using UnityEngine;
 
-/// <summary>
-/// (한종민)플레이어와 충돌 시 일정 시간 동안 속도를 변화시킵니다.
+// < summary >
+// (한종민)플레이어와 충돌 시 일정 시간 동안 속도를 변화시킵니다.
 /// </summary>
 [RequireComponent(typeof(Collider2D))]
-public class SpeedItem2D : MonoBehaviour
+public class SpeedItem : MonoBehaviour
 {
     public enum SpeedType { SpeedUp, SpeedDown }
 
@@ -17,22 +17,22 @@ public class SpeedItem2D : MonoBehaviour
     [Header("지속시간 초단위")]
     public float duration = 3f;
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (!other.CompareTag("Player")) return;
+    //private void OnTriggerEnter2D(Collider2D other)
+    //{
+    //    if (!other.CompareTag("Player")) return;
 
-        var movement = other.GetComponent<PlayerMove>(); // 플레이어스크립트
-        if (movement == null)
-        {
-            Debug.LogWarning("SpeedItem: PlayerMove 스크립트를 찾을 수 없습니다.");
-            return;
-        }
+    //    var movement = other.GetComponent<PlayerMove>(); // 플레이어스크립트
+    //    if (movement == null)
+    //    {
+    //        Debug.LogWarning("SpeedItem: PlayerMove 스크립트를 찾을 수 없습니다.");
+    //        return;
+    //    }
 
-        float effectMultiplier = (type == SpeedType.SpeedUp)
-            ? multiplier
-            : speedDownMultiplier;
+    //    float effectMultiplier = (type == SpeedType.SpeedUp)
+    //        ? multiplier
+    //        : speedDownMultiplier;
 
-        movement.ApplySpeedEffect(effectMultiplier, duration);
-        Destroy(gameObject);
-    }
+    //    movement.ApplySpeedEffect(effectMultiplier, duration);
+    //    Destroy(gameObject);
+    //}
 }
