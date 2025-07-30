@@ -21,18 +21,18 @@ public class SpeedItem2D : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
 
-        var movement = other.GetComponent<PlayerMove>(); // 플레이어스크립트
-        if (movement == null)
-        {
-            Debug.LogWarning("SpeedItem: PlayerMove 스크립트를 찾을 수 없습니다.");
-            return;
-        }
+        //var movement = other.GetComponent<PlayerMove>(); // 플레이어스크립트
+        //if (movement == null)
+        //{
+            //Debug.LogWarning("SpeedItem: PlayerMove 스크립트를 찾을 수 없습니다.");
+            //return;
+        //}
 
         float effectMultiplier = (type == SpeedType.SpeedUp)
             ? multiplier
             : speedDownMultiplier;
 
-        movement.ApplySpeedEffect(effectMultiplier, duration);
+        //movement.ApplySpeedEffect(effectMultiplier, duration);
         Destroy(gameObject);
     }
 }
