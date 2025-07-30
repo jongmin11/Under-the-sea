@@ -41,7 +41,7 @@ public class SpeedItem : MonoBehaviour
 
 
         //movement.ApplySpeedEffect(effectMultiplier, duration);
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 
     //    movement.ApplySpeedEffect(effectMultiplier, duration);

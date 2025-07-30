@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class Jump : MonoBehaviour
 {
-    Animator animator = null;
-    Rigidbody2D rigidbody = null;
+    Animator animator;
+    Rigidbody2D rigidbody;
 
-    public float JumpPower = 20f;
+    public float JumpPower = 0.1f;
     public bool Dead = false;
     public bool Jumps = false;
+    public bool grounds = true;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        animator = GetComponent<Animator>();
+        rigidbody = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -22,14 +24,16 @@ public class Jump : MonoBehaviour
     {
         if (Dead)
         {
-
+            Debug.Log("ав╬З╬Н©Д");
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+
+            if (Input.GetKeyDown(KeyCode.Space) && grounds)
             {
                 Jumps = true;
-                animator.SetInteger("Jump", 1);
+                animator.SetInteger("isJump", 1); 
+                grounds = false;
             }
         }
     }
@@ -38,13 +42,25 @@ public class Jump : MonoBehaviour
         if (Dead)
             return;
 
-        Vector3 velocity = rigidbody.velocity;
+        
 
         if (Jumps)
         {
-            velocity.y += JumpPower;
+            Vector3 velocity = rigidbody.velocity;
+            velocity.y = JumpPower;
+            rigidbody.velocity = velocity;
             Jumps = false;
-            animator.SetInteger("Drop", 2);
+            animator.SetInteger("isDrop", 2);
+            
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            grounds = true;
+            animator.SetInteger("isJump", 0);
+            animator.SetInteger("isDrop", 0);
         }
     }
 }
