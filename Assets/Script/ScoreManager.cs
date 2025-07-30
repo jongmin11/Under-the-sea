@@ -16,6 +16,8 @@ public class ScoreManager : MonoBehaviour
 
     const string HighScoreKey = "HighScore";
 
+    public Text TestScore;
+
     public void Awake()
     {
         if(instance == null)
@@ -44,6 +46,12 @@ public class ScoreManager : MonoBehaviour
             HighScore = CurrentScore;
             SaveHighScore();
         }
+
+        if (TestScore != null)
+        {
+            TestScore.text = CurrentScore.ToString();
+        }
+
     }
 
     /// <summary>
