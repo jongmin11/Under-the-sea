@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,7 +15,7 @@ public class TitleUIManager : MonoBehaviour
             sfxPlayer.PlayOneShot(clickSound);
         }
 
-        
+
         Invoke("LoadNextScene", 0.3f);
     }
 
