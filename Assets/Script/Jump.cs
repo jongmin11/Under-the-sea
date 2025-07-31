@@ -11,6 +11,7 @@ public class Jump : MonoBehaviour
     public bool Dead = false;
     public bool Jumps = false;
     public bool grounds = true;
+    float deathCool = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +25,13 @@ public class Jump : MonoBehaviour
     {
         if (Dead)
         {
-            Debug.Log("Á×¾ú¾î¿ä");
+            if (deathCool >= 0)
+            {
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    animator.SetInteger("doDead", 0);
+                }
+            }
         }
         else
         {
@@ -58,9 +65,17 @@ public class Jump : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            grounds = true; 
-            animator.SetInteger("isJump", 0); 
-            animator.SetInteger("isDrop", 0); 
+            grounds = true;
+            animator.SetInteger("isJump", 0);
+            animator.SetInteger("isDrop", 0);
+            Debug.Log("¾ÈÁ¤Àû ÂøÁö");
+        }
+        else if (collision.gameObject.CompareTag("Block"))
+        {
+            animator.SetInteger("doDead", 1); 
+            Dead = true;
+            deathCool = 1f;
+            Debug.Log("²è");
         }
     }
 }
