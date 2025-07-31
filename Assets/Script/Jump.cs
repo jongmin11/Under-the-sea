@@ -50,7 +50,7 @@ public class Jump : MonoBehaviour
             velocity.y = JumpPower;
             rigidbody.velocity = velocity;
             Jumps = false;
-            animator.SetInteger("isDrop", 2);
+            animator.SetInteger("isDrop", 1);
             
         }
     }
@@ -58,9 +58,9 @@ public class Jump : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            grounds = true;
-            animator.SetInteger("isJump", 0);
-            animator.SetInteger("isDrop", 0);
+            grounds = true; 
+            animator.SetInteger("isJump", 0); 
+            animator.SetInteger("isDrop", 0); 
         }
     }
 }
