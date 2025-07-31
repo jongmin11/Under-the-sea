@@ -1,11 +1,11 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// (ÇÑÁ¾¹Î) °ÔÀÓÀÇ ÇöÀç Á¡¼ö ¹× ÃÖ°í Á¡¼ö¸¦ °ü¸®ÇÏ´Â ½Ì±ÛÅæ Å¬·¡½ºÀÔ´Ï´Ù.
+/// (í•œì¢…ë¯¼) ê²Œì„ì˜ í˜„ì¬ ì ìˆ˜ ë° ìµœê³  ì ìˆ˜ë¥¼ ê´€ë¦¬í•˜ëŠ” ì‹±ê¸€í†¤ í´ë˜ìŠ¤ì…ë‹ˆë‹¤.
 /// </summary>
 public class ScoreManager : MonoBehaviour
 {
@@ -15,6 +15,9 @@ public class ScoreManager : MonoBehaviour
     public int HighScore { get; private set; } = 0;
 
     const string HighScoreKey = "HighScore";
+
+    public Text TestScore;
+    
 
     public void Awake()
     {
@@ -32,7 +35,7 @@ public class ScoreManager : MonoBehaviour
 
 
     /// <summary>
-    /// (ÇÑÁ¾¹Î) Á¡¼ö¸¦ Ãß°¡ÇÕ´Ï´Ù. ÃÖ°í Á¡¼ö¸¦ ÀÚµ¿À¸·Î °»½ÅÇÕ´Ï´Ù.
+    /// (í•œì¢…ë¯¼) ì ìˆ˜ë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤. ìµœê³  ì ìˆ˜ë¥¼ ìë™ìœ¼ë¡œ ê°±ì‹ í•©ë‹ˆë‹¤.
     /// </summary>
     /// <param name="amount"></param>
     public void AddScore(int amount)
@@ -44,11 +47,21 @@ public class ScoreManager : MonoBehaviour
             HighScore = CurrentScore;
             SaveHighScore();
         }
+
+        if (TestScore != null)
+        {
+            TestScore.text = CurrentScore.ToString();
+        }
+        else if (TestScore == null) 
+        {
+            Debug.LogError("ScoreManager:ì¸ìŠ¤í™í„°ì—ì„œ í…ìŠ¤íŠ¸ì—°ê²° í™•ì¸í•´ì£¼ì„¸ìš”");
+        }
+
     }
 
     /// <summary>
-    /// (ÇÑÁ¾¹Î) ÇöÀç Á¡¼ö¸¦ 0À¸·Î ÃÊ±âÈ­ÇÕ´Ï´Ù.  
-    /// ÃÖ°í Á¡¼ö´Â ±×´ë·Î À¯ÁöµË´Ï´Ù.
+    /// (í•œì¢…ë¯¼) í˜„ì¬ ì ìˆ˜ë¥¼ 0ìœ¼ë¡œ ì´ˆê¸°í™”í•©ë‹ˆë‹¤.  
+    /// ìµœê³  ì ìˆ˜ëŠ” ê·¸ëŒ€ë¡œ ìœ ì§€ë©ë‹ˆë‹¤.
     /// </summary>
     public void ResetScore()
     {
@@ -56,7 +69,7 @@ public class ScoreManager : MonoBehaviour
     }
 
     /// <summary>
-    /// (ÇÑÁ¾¹Î) ÇöÀç ÃÖ°í Á¡¼ö¸¦ ·ÎÄÃ ÀúÀå¼Ò(PlayerPrefs)¿¡ ÀúÀåÇÕ´Ï´Ù.
+    /// (í•œì¢…ë¯¼) í˜„ì¬ ìµœê³  ì ìˆ˜ë¥¼ ë¡œì»¬ ì €ì¥ì†Œ(PlayerPrefs)ì— ì €ì¥í•©ë‹ˆë‹¤.
     /// </summary>
     void SaveHighScore()
     {
@@ -65,8 +78,8 @@ public class ScoreManager : MonoBehaviour
     }
 
     /// <summary>
-    /// (ÇÑÁ¾¹Î) ·ÎÄÃ ÀúÀå¼Ò(PlayerPrefs)¿¡¼­ ÃÖ°í Á¡¼ö¸¦ ºÒ·¯¿É´Ï´Ù.
-    /// °ªÀÌ ¾øÀ» °æ¿ì 0À¸·Î ÃÊ±âÈ­µË´Ï´Ù.
+    /// (í•œì¢…ë¯¼) ë¡œì»¬ ì €ì¥ì†Œ(PlayerPrefs)ì—ì„œ ìµœê³  ì ìˆ˜ë¥¼ ë¶ˆëŸ¬ì˜µë‹ˆë‹¤.
+    /// ê°’ì´ ì—†ì„ ê²½ìš° 0ìœ¼ë¡œ ì´ˆê¸°í™”ë©ë‹ˆë‹¤.
     /// </summary>
     void LoadHighScore()
     {
