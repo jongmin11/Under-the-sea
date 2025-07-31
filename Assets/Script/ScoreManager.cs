@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 /// <summary>
 /// (한종민) 게임의 현재 점수 및 최고 점수를 관리하는 싱글톤 클래스입니다.
@@ -16,7 +17,8 @@ public class ScoreManager : MonoBehaviour
 
     const string HighScoreKey = "HighScore";
 
-    public Text TestScore;
+    [SerializeField] private TextMeshProUGUI currentScoreText;
+    [SerializeField] private TextMeshProUGUI highScoreText;
     
 
     public void Awake()
@@ -48,14 +50,7 @@ public class ScoreManager : MonoBehaviour
             SaveHighScore();
         }
 
-        if (TestScore != null)
-        {
-            TestScore.text = CurrentScore.ToString();
-        }
-        else if (TestScore == null) 
-        {
-            Debug.LogError("ScoreManager:인스펙터에서 텍스트연결 확인해주세요");
-        }
+        UpdateScoreUI();
 
     }
 
@@ -66,7 +61,21 @@ public class ScoreManager : MonoBehaviour
     public void ResetScore()
     {
         CurrentScore = 0;
+        UpdateScoreUI();
     }
+
+    /// <summary>
+    /// (한종민)TMP 텍스트로 점수를 출력합니다.
+    /// </summary>
+    private void UpdateScoreUI()
+    {
+        if (currentScoreText != null)
+            currentScoreText.text = $"Score: {CurrentScore}";
+
+        if (highScoreText != null)
+            highScoreText.text = $"High: {HighScore}";
+    }
+
 
     /// <summary>
     /// (한종민) 현재 최고 점수를 로컬 저장소(PlayerPrefs)에 저장합니다.
