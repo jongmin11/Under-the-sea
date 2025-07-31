@@ -19,6 +19,7 @@ public class ScoreManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI currentScoreText;
     [SerializeField] private TextMeshProUGUI highScoreText;
+    [SerializeField] private TextMeshProUGUI inGameCurrentScore;
     
 
     public void Awake()
@@ -73,7 +74,10 @@ public class ScoreManager : MonoBehaviour
             currentScoreText.text = $"Score: {CurrentScore}";
 
         if (highScoreText != null)
-            highScoreText.text = $"High: {HighScore}";
+            highScoreText.text = $"HighScore: {HighScore}";
+
+        if (inGameCurrentScore != null)
+            inGameCurrentScore.text = $"{CurrentScore}";
     }
 
 
