@@ -71,10 +71,10 @@ public class ScoreManager : MonoBehaviour
     private void UpdateScoreUI()
     {
         if (currentScoreText != null)
-            currentScoreText.text = $"Score: {CurrentScore}";
+            currentScoreText.text = $"{CurrentScore}";
 
         if (highScoreText != null)
-            highScoreText.text = $"HighScore: {HighScore}";
+            highScoreText.text = $"{HighScore}";
 
         if (inGameCurrentScore != null)
             inGameCurrentScore.text = $"{CurrentScore}";
