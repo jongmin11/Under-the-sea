@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     public bool Slides = false;
     public bool Wakes = false;
     public bool grounds = true;
+    public bool Drop = false;
     float deathCool = 0f;
     private GameOver gameOverManager;
     // Start is called before the first frame update
@@ -79,19 +80,32 @@ public class Player : MonoBehaviour
             Jumps = false;
         }
 
-        Debug.Log($"슬라이드 {Slides}");
-        if (transform.position.y >= 2)
+
+        Debug.Log($"슬라이드 {rigidbody.velocity.y}");
+
+        if (rigidbody.velocity.y < 0f) // 최대 높이 값   
         {
-            animator.SetTrigger("Drop");
+            if (!Drop)
+            {
+                Drop = true;
+                animator.SetBool("Drop",Drop);
+            }
         }
 
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log(collision.gameObject.tag);
         if (collision.gameObject.CompareTag("Ground"))
         {
             grounds = true;
+            Debug.Log("Ground");
             animator.SetTrigger("Run");
+            if (Drop)
+            {
+                Drop = false;
+                animator.SetBool("Drop", Drop);
+            }
         }
         else if (collision.gameObject.CompareTag("Block"))
         {

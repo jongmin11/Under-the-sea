@@ -1,9 +1,6 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Script/Background_jinwoo/Obstacle.cs.meta
-guid: 1746e718378646a49a51838937265f8a
-========
+guid: b7f9b7d0820f79047aae757f0e4450da
 guid: 5bbe221a459783f438e3004ea117fca1
->>>>>>>> 3f50b8e23fb19ae76da2e325e181de9111ba3f45:Assets/Script/Player.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
