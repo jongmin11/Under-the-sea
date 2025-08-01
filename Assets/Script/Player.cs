@@ -2,14 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Jump : MonoBehaviour
+public class Player : MonoBehaviour
 {
     Animator animator;
+    BoxCollider2D box;
     Rigidbody2D rigidbody;
 
-    public float JumpPower = 0.1f;
+    public float JumpPower = 10f;
     public bool Dead = false;
     public bool Jumps = false;
+    public bool Slides = false;
+    public bool Wakes = false;
     public bool grounds = true;
     float deathCool = 0f;
 
@@ -18,6 +21,7 @@ public class Jump : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody2D>();
+        box = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -39,8 +43,20 @@ public class Jump : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space) && grounds)
             {
                 Jumps = true;
-                animator.SetInteger("isJump", 1); 
                 grounds = false;
+            }
+
+            else if (Input.GetKeyDown(KeyCode.LeftShift) && grounds)
+            {
+                animator.SetTrigger("Slide");
+                box.size = new Vector2(1f, 0.5f);
+                box.offset = new Vector2(0f, -0.25f);
+            }
+            else if (Input.GetKeyUp(KeyCode.LeftShift) && grounds)
+            {
+                animator.SetTrigger("Wakes");
+                box.size = new Vector2(1f, 1f);
+                box.offset = new Vector2(0, 0f);
             }
         }
     }
@@ -49,33 +65,33 @@ public class Jump : MonoBehaviour
         if (Dead)
             return;
 
-        
 
         if (Jumps)
         {
-            Vector3 velocity = rigidbody.velocity;
-            velocity.y = JumpPower;
-            rigidbody.velocity = velocity;
+            rigidbody.AddForce(Vector2.up * JumpPower, ForceMode2D.Impulse);
+            animator.SetTrigger("Jump");
             Jumps = false;
-            animator.SetInteger("isDrop", 1);
-            
         }
+
+        Debug.Log($"½½¶óÀÌµå {Slides}");
+        if (transform.position.y >= 2)
+        {
+            animator.SetTrigger("Drop");
+        }
+
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
             grounds = true;
-            animator.SetInteger("isJump", 0);
-            animator.SetInteger("isDrop", 0);
-            Debug.Log("¾ÈÁ¤Àû ÂøÁö");
+            animator.SetTrigger("Run");
         }
         else if (collision.gameObject.CompareTag("Block"))
         {
-            animator.SetInteger("doDead", 1); 
+            animator.SetTrigger("Dead");
             Dead = true;
             deathCool = 1f;
-            Debug.Log("²è");
         }
     }
 }
