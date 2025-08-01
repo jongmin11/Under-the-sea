@@ -1,73 +1,109 @@
 ﻿using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// 플레이어 사망 시 암전과 게임오버 UI 전체를 자연스럽게 출력하는 컨트롤러
+/// </summary>
 public class GameOver : MonoBehaviour
 {
-    [Header("게임 오버 UI")]
-    [Tooltip("게임 오버 시 활성화될 UI 패널 오브젝트")]
-    [SerializeField] private GameObject gameOverPanelObject;
+    [Header("UI 요소")]
+    [Tooltip("게임오버 패널 (전체 UI 포함)")]
+    [SerializeField] private GameObject gameOverPanel;
 
-    [Header("페이드 설정")]
-    [Tooltip("화면을 어둡게 덮는 Image (검정색)")]
+    [Tooltip("게임오버 패널에 붙은 CanvasGroup")]
+    [SerializeField] private CanvasGroup canvasGroup;
+
+    [Header("페이드 이미지")]
+    [Tooltip("검정 배경 이미지 (페이드용)")]
     [SerializeField] private Image fadeImage;
 
-    [Tooltip("페이드 아웃에 걸리는 시간 (초)")]
-    [SerializeField] public float fadeDuration = 1.5f;
+    [Header("페이드 설정")]
+    [Tooltip("페이드 아웃 시간 (초)")]
+    [SerializeField] private float fadeDuration = 1.5f;
+
+    [Header("점수 UI")]
+    [Tooltip("현재 점수를 표시할 TMP 텍스트")]
+    [SerializeField] private TMP_Text DiecurrentScoreText;
+
+    [Tooltip("최고 점수를 표시할 TMP 텍스트")]
+    [SerializeField] private TMP_Text DiehighScoreText;
 
     /// <summary>
-    /// (한종민)시작 시, 페이드 이미지와 게임오버 패널을 초기화합니다.
+    /// 시작 시 게임오버 UI를 꺼두고, 알파를 0으로 설정합니다.
     /// </summary>
-    void Awake()
+    private void Awake()
     {
-        GameObject bg = GameObject.Find("BG");
-        if (bg == null) 
-            return;
+        if (gameOverPanel != null)
+            gameOverPanel.SetActive(false);
 
-        gameOverPanelObject = bg.transform.Find("GameOverPanel")?.gameObject;
-        if (gameOverPanelObject == null) 
-            return; 
+        if (canvasGroup != null)
+            canvasGroup.alpha = 0f;
 
-        Transform imageTransform = gameOverPanelObject.transform.Find("Image");
-        if (imageTransform == null) 
-            return;
-
-        fadeImage = imageTransform.GetComponent<Image>();
-        if (fadeImage == null) 
-            return;
-
-        
-        Color start = fadeImage.color;
-        start.a = 0f; // 페이드 이미지 알파 0으로 시작
-        fadeImage.color = start;
+        if (fadeImage != null)
+        {
+            Color c = fadeImage.color;
+            c.a = 0f;
+            fadeImage.color = c;
+        }
     }
 
     /// <summary>
-    /// (한종민)외부에서 호출되는 게임오버 시작 함수입니다. 페이드 연출을 시작합니다.
+    /// 외부에서 호출되는 게임오버 진입 함수입니다.
     /// </summary>
     public void StartGameOver()
     {
-        gameOverPanelObject.SetActive(true);
-        StartCoroutine(FadeOutAndShow());
+        if (gameOverPanel != null)
+            gameOverPanel.SetActive(true);
+
+        if (DiecurrentScoreText != null)
+            DiecurrentScoreText.text = $"{ScoreManager.instance.CurrentScore}";
+
+        if (DiehighScoreText != null)
+            DiehighScoreText.text = $"{ScoreManager.instance.HighScore}";
+
+        StartCoroutine(FadeInGameOverUI());
     }
 
     /// <summary>
-    /// (한종민)페이드 아웃 후 게임 오버 UI를 표시하는 코루틴입니다.
+    /// CanvasGroup의 알파값을 서서히 증가시켜 전체 UI를 페이드인합니다.
     /// </summary>
-    IEnumerator FadeOutAndShow()
+    private IEnumerator FadeInGameOverUI()
     {
-        float t = 0f;
-        Color color = fadeImage.color;
+        float time = 0f;
 
-        while (t < fadeDuration)
+        Color fadeColor = fadeImage != null ? fadeImage.color : Color.black;
+
+        while (time < fadeDuration)
         {
-            t += Time.deltaTime;
-            color.a = Mathf.Clamp01(t / fadeDuration);
-            fadeImage.color = color;
+            time += Time.unscaledDeltaTime;
+            float alpha = Mathf.Clamp01(time / fadeDuration);
+
+            if (canvasGroup != null)
+                canvasGroup.alpha = alpha;
+
+            if (fadeImage != null)
+            {
+                fadeColor.a = alpha;
+                fadeImage.color = fadeColor;
+            }
+
             yield return null;
         }
 
-        color.a = 1f;
-        fadeImage.color = color;
+        if (canvasGroup != null)
+            canvasGroup.alpha = 1f;
+
+        if (fadeImage != null)
+        {
+            fadeColor.a = 1f;
+            fadeImage.color = fadeColor;
+        }
+
+        
+        
+
+        Time.timeScale = 0f;
     }
 }
