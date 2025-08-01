@@ -17,13 +17,14 @@ public class Player : MonoBehaviour
     public bool Wakes = false;
     public bool grounds = true;
     float deathCool = 0f;
-
+    private GameOver gameOverManager;
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody2D>();
         box = GetComponent<BoxCollider2D>();
+        gameOverManager = FindObjectOfType<GameOver>();
     }
 
     // Update is called once per frame
@@ -97,6 +98,21 @@ public class Player : MonoBehaviour
             animator.SetTrigger("Dead");
             Dead = true;
             deathCool = 1f;
+
+            /// <summary>
+            /// (한종민) 블록과 충돌 시 1초 후 게임오버 연출을 시작함
+            /// </summary>
+            if (gameOverManager != null)
+                StartCoroutine(DelayedGameOver(1.0f)); // 여기서 1초 후 암전 시작
         }
+    }
+
+    /// <summary>
+    /// (한종민) 일정 시간 후 GameOverManager.StartGameOver() 호출
+    /// </summary>
+    IEnumerator DelayedGameOver(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        gameOverManager.StartGameOver();
     }
 }
