@@ -4,13 +4,15 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Ground
   - BackGround
   - Obstacle
+  - Block
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - ground
   - Water
   - UI
   - 

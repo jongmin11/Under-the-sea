@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Script/Jump.cs.meta
+guid: 67ba40b129b267844ae610229cb7020a
+========
 guid: 78813be61496658468e6e866f4971888
+>>>>>>>> develop:Assets/Script/ItemDB/HealItemDB.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
