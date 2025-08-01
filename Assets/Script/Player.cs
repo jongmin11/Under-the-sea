@@ -106,7 +106,7 @@ public class Player : MonoBehaviour
             {
                 Drop = false;
                 animator.SetBool("Drop", Drop);
-                animator.SetTrigger("Run");
+                
             }
         }
         else if (collision.gameObject.CompareTag("Block"))
