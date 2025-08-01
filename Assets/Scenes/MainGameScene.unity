@@ -1026,7 +1026,7 @@ GameObject:
   - component: {fileID: 145800785}
   m_Layer: 0
   m_Name: CaveGround002
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6292,7 +6292,7 @@ GameObject:
   - component: {fileID: 1054271835}
   m_Layer: 0
   m_Name: Balcksquare
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7949,7 +7949,7 @@ GameObject:
   - component: {fileID: 1417334572}
   m_Layer: 0
   m_Name: CaveGround002
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9980,7 +9980,7 @@ GameObject:
   - component: {fileID: 1778626456}
   m_Layer: 0
   m_Name: CaveGround002
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
