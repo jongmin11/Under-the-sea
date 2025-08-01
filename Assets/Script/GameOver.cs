@@ -50,7 +50,10 @@ public class GameOver : MonoBehaviour
     }
 
     /// <summary>
-    /// 외부에서 호출되는 게임오버 진입 함수입니다.
+    /// (한종민) 게임 오버 패널을 활성화하고,
+    /// 현재 점수와 최고 점수를 출력하며,
+    /// 페이드 연출을 시작합니다.
+    /// 이후 ESC 키 비활성화를 위해 GameManager에 상태를 전달합니다.
     /// </summary>
     public void StartGameOver()
     {
@@ -63,11 +66,15 @@ public class GameOver : MonoBehaviour
         if (DiehighScoreText != null)
             DiehighScoreText.text = $"{ScoreManager.instance.HighScore}";
 
+        GameManager.Instance?.SetGameOver(true); 
+
         StartCoroutine(FadeInGameOverUI());
     }
 
     /// <summary>
-    /// CanvasGroup의 알파값을 서서히 증가시켜 전체 UI를 페이드인합니다.
+    /// (한종민) 게임 오버 UI 전체를 Time.unscaledDeltaTime을 이용해
+    /// 부드럽게 페이드 인하고,
+    /// 완료 시 Time.timeScale을 0으로 멈춰 게임을 정지시킵니다.
     /// </summary>
     private IEnumerator FadeInGameOverUI()
     {
@@ -100,9 +107,6 @@ public class GameOver : MonoBehaviour
             fadeColor.a = 1f;
             fadeImage.color = fadeColor;
         }
-
-        
-        
 
         Time.timeScale = 0f;
     }

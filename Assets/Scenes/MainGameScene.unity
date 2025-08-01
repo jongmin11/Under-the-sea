@@ -1747,6 +1747,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pausePanal: {fileID: 1993015135}
   pauseButton: {fileID: 593309331}
+  pauseSfxClip: {fileID: 8300000, guid: 8b4a9135aca8a2f4ab8a0e11ae25a2ce, type: 3}
 --- !u!4 &239529282
 Transform:
   m_ObjectHideFlags: 0
