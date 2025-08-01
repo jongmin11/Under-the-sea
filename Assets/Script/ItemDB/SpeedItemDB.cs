@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 // < summary >
 // (한종민)플레이어와 충돌 시 일정 시간 동안 속도를 변화시킵니다.
