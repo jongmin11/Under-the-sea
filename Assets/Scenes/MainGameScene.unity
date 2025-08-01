@@ -1568,6 +1568,7 @@ RectTransform:
   - {fileID: 593309335}
   - {fileID: 1993015136}
   - {fileID: 849165113}
+  - {fileID: 1085835161}
   m_Father: {fileID: 1210182093}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1631,6 +1632,7 @@ MonoBehaviour:
   fadeDuration: 1.5
   DiecurrentScoreText: {fileID: 1531970490}
   DiehighScoreText: {fileID: 372673724}
+  gameOverText: {fileID: 1085835162}
 --- !u!1 &237154086
 GameObject:
   m_ObjectHideFlags: 0
@@ -5345,7 +5347,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 70982401}
-  - {fileID: 1085835161}
   - {fileID: 1121159814}
   - {fileID: 109728971}
   - {fileID: 1564687310}
@@ -6240,12 +6241,12 @@ GameObject:
   - component: {fileID: 1085835163}
   - component: {fileID: 1085835162}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: gameOverText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1085835161
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6253,16 +6254,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1085835160}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3.802, y: 3.802, z: 3.802}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 849165113}
+  m_Father: {fileID: 209949088}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 406}
+  m_AnchoredPosition: {x: 0, y: 22}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1085835162

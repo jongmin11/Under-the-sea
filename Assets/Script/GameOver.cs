@@ -9,30 +9,24 @@ using UnityEngine.UI;
 public class GameOver : MonoBehaviour
 {
     [Header("UI 요소")]
-    [Tooltip("게임오버 패널 (전체 UI 포함)")]
     [SerializeField] private GameObject gameOverPanel;
-
-    [Tooltip("게임오버 패널에 붙은 CanvasGroup")]
     [SerializeField] private CanvasGroup canvasGroup;
 
     [Header("페이드 이미지")]
-    [Tooltip("검정 배경 이미지 (페이드용)")]
     [SerializeField] private Image fadeImage;
 
     [Header("페이드 설정")]
-    [Tooltip("페이드 아웃 시간 (초)")]
     [SerializeField] private float fadeDuration = 1.5f;
 
     [Header("점수 UI")]
-    [Tooltip("현재 점수를 표시할 TMP 텍스트")]
     [SerializeField] private TMP_Text DiecurrentScoreText;
-
-    [Tooltip("최고 점수를 표시할 TMP 텍스트")]
     [SerializeField] private TMP_Text DiehighScoreText;
 
-    /// <summary>
-    /// 시작 시 게임오버 UI를 꺼두고, 알파를 0으로 설정합니다.
-    /// </summary>
+    [Header("애니메이션 텍스트")]
+    [SerializeField] private TMP_Text gameOverText;
+
+    private Vector3 gameOverTextStartPos;
+
     private void Awake()
     {
         if (gameOverPanel != null)
@@ -47,67 +41,116 @@ public class GameOver : MonoBehaviour
             c.a = 0f;
             fadeImage.color = c;
         }
+
+        if (gameOverText != null)
+        {
+            gameOverTextStartPos = gameOverText.transform.localPosition;
+            gameOverText.gameObject.SetActive(true);
+            Color color = gameOverText.color;
+            color.a = 0f;
+            gameOverText.color = color;
+        }
     }
 
-    /// <summary>
-    /// (한종민) 게임 오버 패널을 활성화하고,
-    /// 현재 점수와 최고 점수를 출력하며,
-    /// 페이드 연출을 시작합니다.
-    /// 이후 ESC 키 비활성화를 위해 GameManager에 상태를 전달합니다.
-    /// </summary>
     public void StartGameOver()
     {
-        if (gameOverPanel != null)
-            gameOverPanel.SetActive(true);
-
         if (DiecurrentScoreText != null)
             DiecurrentScoreText.text = $"{ScoreManager.instance.CurrentScore}";
 
         if (DiehighScoreText != null)
             DiehighScoreText.text = $"{ScoreManager.instance.HighScore}";
 
-        GameManager.Instance?.SetGameOver(true); 
+        GameManager.Instance?.SetGameOver(true);
 
-        StartCoroutine(FadeInGameOverUI());
+        StartCoroutine(FadeInSequence());
     }
 
-    /// <summary>
-    /// (한종민) 게임 오버 UI 전체를 Time.unscaledDeltaTime을 이용해
-    /// 부드럽게 페이드 인하고,
-    /// 완료 시 Time.timeScale을 0으로 멈춰 게임을 정지시킵니다.
-    /// </summary>
-    private IEnumerator FadeInGameOverUI()
+    private IEnumerator FadeInSequence()
+    {
+        // 1. 배경 + 텍스트 동시에 시작
+        yield return StartCoroutine(FadeInBackgroundWithText());
+
+        // 2. 텍스트 위로 이동하며 사라지기
+        yield return StartCoroutine(FadeOutGameOverText());
+
+        // 3. 점수 패널 등장
+        if (gameOverPanel != null)
+            gameOverPanel.SetActive(true);
+
+        yield return StartCoroutine(FadeInGameOverUI());
+    }
+
+    private IEnumerator FadeInBackgroundWithText()
     {
         float time = 0f;
+        Color fadeColor = fadeImage.color;
+        Color textColor = gameOverText.color;
 
-        Color fadeColor = fadeImage != null ? fadeImage.color : Color.black;
+        Vector3 startPos = gameOverTextStartPos;
+        Vector3 midPos = startPos + new Vector3(0, 20f, 0); // 살짝 위로
+
+        gameOverText.transform.localPosition = startPos;
+        gameOverText.color = new Color(textColor.r, textColor.g, textColor.b, 0f);
+        gameOverText.gameObject.SetActive(true);
 
         while (time < fadeDuration)
         {
             time += Time.unscaledDeltaTime;
-            float alpha = Mathf.Clamp01(time / fadeDuration);
+            float t = Mathf.Clamp01(time / fadeDuration);
 
-            if (canvasGroup != null)
-                canvasGroup.alpha = alpha;
+            // 배경 페이드
+            fadeColor.a = t;
+            fadeImage.color = fadeColor;
 
-            if (fadeImage != null)
-            {
-                fadeColor.a = alpha;
-                fadeImage.color = fadeColor;
-            }
+            // 텍스트 페이드 + 이동
+            gameOverText.transform.localPosition = Vector3.Lerp(startPos, midPos, t);
+            textColor.a = t;
+            gameOverText.color = textColor;
 
             yield return null;
         }
 
-        if (canvasGroup != null)
-            canvasGroup.alpha = 1f;
+        gameOverText.color = new Color(textColor.r, textColor.g, textColor.b, 1f);
+    }
 
-        if (fadeImage != null)
+    private IEnumerator FadeOutGameOverText()
+    {
+        float time = 0f;
+        float duration = 1.0f;
+
+        Vector3 startPos = gameOverText.transform.localPosition;
+        Vector3 endPos = startPos + new Vector3(0, 80f, 0);
+        Color textColor = gameOverText.color;
+
+        while (time < duration)
         {
-            fadeColor.a = 1f;
-            fadeImage.color = fadeColor;
+            time += Time.unscaledDeltaTime;
+            float t = time / duration;
+
+            gameOverText.transform.localPosition = Vector3.Lerp(startPos, endPos, t);
+            textColor.a = Mathf.Lerp(1f, 0f, t);
+            gameOverText.color = textColor;
+
+            yield return null;
         }
 
+        gameOverText.gameObject.SetActive(false);
+    }
+
+    private IEnumerator FadeInGameOverUI()
+    {
+        float time = 0f;
+        canvasGroup.alpha = 0f;
+
+        while (time < fadeDuration)
+        {
+            time += Time.unscaledDeltaTime;
+            float t = time / fadeDuration;
+            canvasGroup.alpha = t;
+            yield return null;
+        }
+
+        canvasGroup.alpha = 1f;
         Time.timeScale = 0f;
     }
 }
