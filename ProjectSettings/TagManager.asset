@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - BackGround
+  - Obstacle
   - Block
   layers:
   - Default
