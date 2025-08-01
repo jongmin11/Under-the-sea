@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     BoxCollider2D box;
     Rigidbody2D rigidbody;
 
+
+    public float Speed = 1.0f;
     public float JumpPower = 10f;
     public bool Dead = false;
     public bool Jumps = false;
@@ -62,6 +64,9 @@ public class Player : MonoBehaviour
     }
     public void FixedUpdate()
     {
+
+        rigidbody.velocity = new Vector2(Speed, rigidbody.velocity.y);
+
         if (Dead)
             return;
 
@@ -73,7 +78,7 @@ public class Player : MonoBehaviour
             Jumps = false;
         }
 
-        Debug.Log($"½½¶óÀÌµå {Slides}");
+        Debug.Log($"ìŠ¬ë¼ì´ë“œ {Slides}");
         if (transform.position.y >= 2)
         {
             animator.SetTrigger("Drop");

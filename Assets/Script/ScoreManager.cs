@@ -29,6 +29,7 @@ public class ScoreManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
             LoadHighScore();
+            UpdateScoreUI();
         }
         else
         {
