@@ -101,10 +101,12 @@ public class Player : MonoBehaviour
             grounds = true;
             Debug.Log("Ground");
             animator.SetTrigger("Run");
+
             if (Drop)
             {
                 Drop = false;
                 animator.SetBool("Drop", Drop);
+                
             }
         }
         else if (collision.gameObject.CompareTag("Block"))
