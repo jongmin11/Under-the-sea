@@ -47,11 +47,25 @@ public class Obstacle : MonoBehaviour
         {
             float spawnX = currentPosition.x + Random.Range(minIntervalX, maxIntervalX);
 
-            bool canSpawnBottom = bottomStreak < 2 && Mathf.Abs(spawnX - lastTopXPos.x) >= minTopBottomDistance;
+            bool spawnBottom = false;
+            bool spawnTop = false;
 
-            bool forceBottom = (bottomCount < 2 && i >= obstacleCount - 2); // 끝에 최소 3개는 보장
+            // Top과 Bottom 간 최소 거리 보장
+            bool isFarFromTop = Mathf.Abs(spawnX - lastTopXPos.x) >= 10f;
+            bool isFarFromBottom = Mathf.Abs(spawnX - lastBottomXPos.x) >= 10f;
 
-            bool spawnBottom = (Random.value < 0.5f && canSpawnBottom) || forceBottom;
+            // 강제로 Bottom을 넣어야 할 시기
+            bool forceBottom = (bottomCount < 2 && i >= obstacleCount - 4);
+
+            // 조건에 따라 Bottom 생성
+            if ((Random.value < 0.5f && isFarFromTop && bottomStreak < 2) || forceBottom)
+            {
+                spawnBottom = true;
+            }
+            else if (isFarFromBottom) // Top 생성 조건
+            {
+                spawnTop = true;
+            }
 
             if (spawnBottom)
             {
@@ -61,10 +75,11 @@ public class Obstacle : MonoBehaviour
                 bottomStreak++;
                 bottomCount++;
             }
-            else
+            else if (spawnTop)
             {
                 int topCount = Random.Range(1, 4);
-                float topStartX = spawnX + 1f; // Bottom과 간섭 피하기 위해 X축 약간 이동
+                float topStartX = spawnX + 1f;
+
                 for (int t = 0; t < topCount; t++)
                 {
                     float topX = topStartX + t * 1.5f;
@@ -75,10 +90,10 @@ public class Obstacle : MonoBehaviour
                 bottomStreak = 0;
             }
 
-            currentPosition.x = spawnX + Random.Range(4f, 6f); // 장애물 간격 증가
+            // 다음 장애물 위치 계산
+            currentPosition.x = spawnX + Random.Range(2f, 10f);
         }
     }
-    
   
     GameObject GetRandom(GameObject[] prefabs)
     {
@@ -91,12 +106,33 @@ public class Obstacle : MonoBehaviour
         int index = Random.Range(0, prefabs.Length);
         return prefabs[index];
     }
-
     public void ReuseObstacle(GameObject obstacle)
     {
         Vector3 newPosition = obstacle.transform.position;
         newPosition.x += reuseOffsetX;
+
+        // 장애물 종류 확인 (Y 위치나 태그 기반)
+        bool isBottom = Mathf.Abs(newPosition.y - bottomY) < 0.1f;
+        bool isTop = Mathf.Abs(newPosition.y - topY) < 0.1f;
+
+        // 최소 간격 보장
+        if (isBottom && Mathf.Abs(newPosition.x - lastTopXPos.x) < minTopBottomDistance)
+        {
+            newPosition.x = lastTopXPos.x + minTopBottomDistance + 1f;
+        }
+        else if (isTop && Mathf.Abs(newPosition.x - lastBottomXPos.x) < minTopBottomDistance)
+        {
+            newPosition.x = lastBottomXPos.x + minTopBottomDistance + 1f;
+        }
+
+        // 위치 적용
         obstacle.transform.position = newPosition;
+
+        // 마지막 위치 업데이트
+        if (isBottom)
+            lastBottomXPos = newPosition;
+        else if (isTop)
+            lastTopXPos = newPosition;
     }
 
     public void SetStage(int index)

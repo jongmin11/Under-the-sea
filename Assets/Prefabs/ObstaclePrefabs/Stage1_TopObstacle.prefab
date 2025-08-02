@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4288747419371691341}
   m_Layer: 0
   m_Name: Stage1_TopObstacle
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -203,5 +203,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.8, y: 9.6}
+  m_Size: {x: 1.2, y: 4.8}
   m_EdgeRadius: 0
