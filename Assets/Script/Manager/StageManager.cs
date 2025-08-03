@@ -34,31 +34,35 @@ public class StageManager : MonoBehaviour
     {
         isTransitioning = true;
 
-        // 1. 현재 카메라 위치 가져오기
+        // 1. 플레이어 Rigidbody 잠시 정지 (선택)
+        Rigidbody2D playerRb = GameObject.FindWithTag("Player")?.GetComponent<Rigidbody2D>();
+        if (playerRb != null)
+        {
+            playerRb.velocity = Vector2.zero;
+            playerRb.isKinematic = true; // 중력 영향 끊기
+        }
+
+        // 현재 카메라 위치
         Vector3 cameraPos = Camera.main.transform.position;
 
-        fadeOverlay.transform.position = new Vector3(cameraPos.x, cameraPos.y, cameraPos.z + 1f); 
- 
         // 현재 Stage 비활성화
         stageObjects[currentStageIndex].SetActive(false);
 
-        // 페이드 아웃 (자연스럽게)
-        //yield return StartCoroutine(FadeBackground(0f, 1f, 0.5f)); // 화면 어두워짐
-        // 다음 스테이지 인덱스 계산
-        currentStageIndex++;
-    
-        
-        // 2. 다음 스테이지 오브젝트 위치를 카메라 위치로 이동
+        // 다음 스테이지 위치 재배치
         stageObjects[nextStageIndex].transform.position = new Vector3(cameraPos.x, 0f, 0f);
 
-        // 페이드 인 (자연스럽게)
-        yield return StartCoroutine(FadeBackground(1f, 0f, 1f)); // 다시 밝아짐 
-        // 3. 다음 스테이지 활성화
+        // 다음 Stage 활성화
         stageObjects[nextStageIndex].SetActive(true);
-
         currentStageIndex = nextStageIndex;
 
+        // Rigidbody 다시 활성화
+        if (playerRb != null)
+        {
+            playerRb.isKinematic = false;
+        }
+
         isTransitioning = false;
+        yield break;
     }
 
     IEnumerator FadeBackground(float fromAlpha, float toAlpha, float duration)
