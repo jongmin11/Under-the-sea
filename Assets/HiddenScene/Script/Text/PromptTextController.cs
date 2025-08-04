@@ -64,27 +64,26 @@ public class PromptTextController : MonoBehaviour
             {
                 if (deathCount == 1)
                 {
-                    choiceGroupTransform.gameObject.SetActive(true);
                     dialoguePanel.SetActive(true);
+                    choiceGroupTransform.gameObject.SetActive(true);
                 }
 
-                SetUIAlpha(0f); // 알파 0으로 초기화
+                SetUIAlpha(0f);
                 StartCoroutine(FadeInUIObjects(uiGraphicsToFade, 0.5f));
+
+                // ✅ 무조건 prompt 출력도 같이 실행
+                StartCoroutine(ShowPromptLine(deathCount));
 
                 if (deathCount >= 2)
                     StartCoroutine(ShowSupportMessages());
-                else
-                    StartCoroutine(ShowPromptLine());
             });
         }
     }
 
-    IEnumerator ShowPromptLine()
+    IEnumerator ShowPromptLine(int deathCount)
     {
-        if (promptLines == null || promptLines.Length == 0)
-            yield break;
-
-        PromptLine line = promptLines[0];
+        int index = Mathf.Min(deathCount - 1, promptLines.Length - 1);
+        PromptLine line = promptLines[index];
 
         promptText.text = "";
         promptText.fontSize = line.fontSize > 0 ? line.fontSize : 36f;
@@ -110,27 +109,12 @@ public class PromptTextController : MonoBehaviour
             yield break;
 
         choiceGroupTransform.gameObject.SetActive(false);
-        promptText.text = "";
 
         int count = Mathf.Min(4, supportLines.Length);
 
         for (int i = 0; i < count; i++)
         {
             PromptLine line = supportLines[i];
-
-            promptText.text = "";
-            promptText.fontSize = line.fontSize > 0 ? line.fontSize : 48f;
-            promptText.alignment = TextAlignmentOptions.Center;
-            promptText.color = new Color(1, 1, 1, line.alpha > 0 ? line.alpha : 1f);
-
-            if (!string.IsNullOrEmpty(line.font))
-            {
-                TMP_FontAsset fontAsset = Resources.Load<TMP_FontAsset>(line.font);
-                if (fontAsset != null)
-                    promptText.font = fontAsset;
-            }
-
-            yield return typewriter.TypingRoutine(promptText, line.text, typingSpeed, null);
 
             var spawner = FindObjectOfType<SupportMessageSpawner>();
             if (spawner != null)
@@ -142,6 +126,7 @@ public class PromptTextController : MonoBehaviour
         choiceGroupTransform.gameObject.SetActive(true);
         SetButtonsInteractable(true);
     }
+
 
     public void OnClickContinue()
     {
@@ -219,17 +204,27 @@ public class PromptTextController : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(1.0f);
 
+        Debug.Log("🙋 ReviveAfterFadeIn() 실행됨");
+
         var player = FindObjectOfType<Me>();
         if (player != null)
-            player.Revive();
+        {
+            Debug.Log("🙋 플레이어 Revive() 호출");
+            player.Revive();  // ← 이게 반드시 isDead = false로 복구해줌
+        }
 
         var fader = FindObjectOfType<ScreenFader>();
         if (fader != null)
-            fader.FadeIn(Color.black, 1.0f);
+        {
+            fader.FadeIn(Color.black, 1.0f);  // 화면 어두워졌다가 복귀
+        }
 
+        // 게임 시간 복구
         Time.timeScale = 1f;
 
+        // UI는 알파값으로 전부 숨김 처리
         SetUIAlpha(0f);
+
     }
 
     private void SetButtonsInteractable(bool state)

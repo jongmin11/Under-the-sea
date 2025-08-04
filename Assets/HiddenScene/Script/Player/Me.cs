@@ -221,8 +221,6 @@ public class Me : MonoBehaviour
             EnemyText3DAIController ctrl = t.GetComponent<EnemyText3DAIController>();
             if (ctrl != null) ctrl.ForceKill();
         }
-
-        Debug.Log("🩸 플레이어 부활 완료 + 체력 회복 + 주변 탄막 제거");
     }
 
     public void AppearAndRevive()
