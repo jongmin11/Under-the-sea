@@ -353,9 +353,9 @@ GameObject:
   - component: {fileID: 22534234}
   - component: {fileID: 22534236}
   - component: {fileID: 22534235}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SeeGround001
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1024,7 +1024,7 @@ GameObject:
   - component: {fileID: 145800784}
   - component: {fileID: 145800786}
   - component: {fileID: 145800785}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CaveGround002
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -1154,9 +1154,9 @@ GameObject:
   - component: {fileID: 150530321}
   - component: {fileID: 150530323}
   - component: {fileID: 150530322}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SeeGround001
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4773,9 +4773,9 @@ GameObject:
   - component: {fileID: 763668265}
   - component: {fileID: 763668267}
   - component: {fileID: 763668266}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SeeGround001
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5847,7 +5847,7 @@ GameObject:
   - component: {fileID: 962977951}
   - component: {fileID: 962977953}
   - component: {fileID: 962977952}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CaveGround002
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -6765,9 +6765,9 @@ GameObject:
   - component: {fileID: 1162481788}
   - component: {fileID: 1162481790}
   - component: {fileID: 1162481789}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SeeGround001
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7947,7 +7947,7 @@ GameObject:
   - component: {fileID: 1417334571}
   - component: {fileID: 1417334573}
   - component: {fileID: 1417334572}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CaveGround002
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -8162,9 +8162,9 @@ GameObject:
   - component: {fileID: 1512803804}
   - component: {fileID: 1512803806}
   - component: {fileID: 1512803805}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SwampGround001
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8720,9 +8720,9 @@ GameObject:
   - component: {fileID: 1647050772}
   - component: {fileID: 1647050774}
   - component: {fileID: 1647050773}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SwampGround001
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9727,9 +9727,9 @@ GameObject:
   - component: {fileID: 1760485867}
   - component: {fileID: 1760485869}
   - component: {fileID: 1760485868}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SwampGround001
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9978,7 +9978,7 @@ GameObject:
   - component: {fileID: 1778626455}
   - component: {fileID: 1778626457}
   - component: {fileID: 1778626456}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CaveGround002
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -10242,9 +10242,9 @@ GameObject:
   - component: {fileID: 1816475380}
   - component: {fileID: 1816475382}
   - component: {fileID: 1816475381}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SwampGround001
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10817,7 +10817,7 @@ GameObject:
   - component: {fileID: 1878455958}
   - component: {fileID: 1878455960}
   - component: {fileID: 1878455959}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CaveGround002
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -11054,10 +11054,14 @@ MonoBehaviour:
   - {fileID: 255081330806893164, guid: e5c04c73b26379243ad204f9ee7b7406, type: 3}
   forwardDistance: 15
   verticalRange: 2
+  groundY: -3.5
   spawnInterval: 0.5
-  obstacleLayer:
+  groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 64
   overlapCheckRadius: 0.5
 --- !u!4 &1901748071
 Transform:
@@ -11085,9 +11089,9 @@ GameObject:
   - component: {fileID: 1921378371}
   - component: {fileID: 1921378373}
   - component: {fileID: 1921378372}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SwampGround001
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11215,9 +11219,9 @@ GameObject:
   - component: {fileID: 1928402721}
   - component: {fileID: 1928402723}
   - component: {fileID: 1928402722}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SeeGround001
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

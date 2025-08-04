@@ -1,32 +1,39 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// (ÇÑÁ¾¹Î)ÀÏÁ¤ ½Ã°£¸¶´Ù ¾ÆÀÌÅÛÀ» »ı¼ºÇÏ¸ç, Àå¾Ö¹°°ú °ãÄ¡Áö ¾Êµµ·Ï Ãæµ¹ °Ë»ç¸¦ ÁøÇàÇÕ´Ï´Ù.
+/// (í•œì¢…ë¯¼) ì¼ì • ì‹œê°„ë§ˆë‹¤ ì•„ì´í…œì„ ìƒì„±í•˜ë©°, ì¥ì• ë¬¼ê³¼ ê²¹ì¹˜ì§€ ì•Šë„ë¡ ì¶©ëŒ ê²€ì‚¬ë¥¼ ì§„í–‰í•©ë‹ˆë‹¤.
 /// </summary>
 public class ItemSpawner : MonoBehaviour
 {
-    [Header("¾ÆÀÌÅÛ ÇÁ¸®ÆÕ ¸ñ·Ï")]
-    [Tooltip("»ı¼ºÇÒ ¾ÆÀÌÅÛ ÇÁ¸®ÆÕ ¹è¿­ (ÄÚÀÎ, ½ºÇÇµå ¾ÆÀÌÅÛ µî)")]
+    [Header("ì•„ì´í…œ í”„ë¦¬íŒ¹ ëª©ë¡")]
+    [Tooltip("ìƒì„±í•  ì•„ì´í…œ í”„ë¦¬íŒ¹ ë°°ì—´ (ì½”ì¸, ìŠ¤í”¼ë“œ ì•„ì´í…œ ë“±)")]
     public GameObject[] itemPrefabs;
 
-    [Header("½ºÆù ¹üÀ§ (ÇÃ·¹ÀÌ¾î ¾ÕÂÊ ±âÁØ)")]
-    [Tooltip("ÇÃ·¹ÀÌ¾î ±âÁØ ¾ÕÀ¸·Î ¸î À¯´Ö ¶³¾îÁø °÷¿¡ »ı¼ºÇÒÁö")]
+    [Header("ìŠ¤í° ë²”ìœ„ (í”Œë ˆì´ì–´ ì•ìª½ ê¸°ì¤€)")]
+    [Tooltip("í”Œë ˆì´ì–´ ê¸°ì¤€ ì•ìœ¼ë¡œ ëª‡ ìœ ë‹› ë–¨ì–´ì§„ ê³³ì— ìƒì„±í• ì§€")]
     public float forwardDistance = 5f;
-    [Tooltip("ÇÃ·¹ÀÌ¾î ±âÁØ À§¾Æ·¡·Î ¾ó¸¶³ª ÆÛ¶ß¸±Áö")]
+    [Tooltip("í”Œë ˆì´ì–´ ê¸°ì¤€ ìœ„ì•„ë˜ë¡œ ì–¼ë§ˆë‚˜ í¼ëœ¨ë¦´ì§€")]
     public float verticalRange = 2f;
 
-    [Header("»ı¼º Å¸ÀÌ¹Ö")]
-    [Tooltip("¾ÆÀÌÅÛ »ı¼º °£°İ (ÃÊ ´ÜÀ§)")]
+    [Header("ì§€ë©´ ê¸°ì¤€ ë†’ì´")]
+    [Tooltip("í”Œë ˆì´ì–´ê°€ ë‹¬ë¦¬ëŠ” ì§€ë©´ì˜ y ì¢Œí‘œê°’ (ì˜ˆ: -3.5f)")]
+    public float groundY = -3.5f;
+
+    [Header("ìƒì„± íƒ€ì´ë°")]
+    [Tooltip("ì•„ì´í…œ ìƒì„± ê°„ê²© (ì´ˆ ë‹¨ìœ„)")]
     public float spawnInterval = 2f;
     private float timer = 0f;
 
-    [Header("Ãæµ¹ °Ë»ç")]
-    [Tooltip("°ãÄ¡¸é »ı¼º ¾È ÇÒ Àå¾Ö¹°ÀÇ ·¹ÀÌ¾î ¸¶½ºÅ©")]
+    [Header("ì¶©ëŒ ê²€ì‚¬")]
+    [Tooltip("ë•… ê°ì§€ë¥¼ ìœ„í•œ ë ˆì´ì–´ (ì˜ˆ: Ground)")]
+    public LayerMask groundLayer;
+
+    [Tooltip("ì•„ì´í…œ ìƒì„± ì‹œ ê²¹ì¹˜ë©´ ì•ˆ ë˜ëŠ” ì¥ì• ë¬¼ ë ˆì´ì–´ (ì˜ˆ: Obstacle, ObstacleAlt)")]
     public LayerMask obstacleLayer;
 
-    [Tooltip("°ãÄ§ Ã¼Å©¸¦ À§ÇÑ ¿øÇü ¹İÁö¸§")]
+    [Tooltip("ê²¹ì¹¨ ì²´í¬ë¥¼ ìœ„í•œ ì›í˜• ë°˜ì§€ë¦„")]
     public float overlapCheckRadius = 0.5f;
 
     private Transform player;
@@ -34,7 +41,7 @@ public class ItemSpawner : MonoBehaviour
 
     void Start()
     {
-        // ÇÃ·¹ÀÌ¾î Ã£±â
+        // í”Œë ˆì´ì–´ ì°¾ê¸°
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
         if (playerObj != null)
         {
@@ -42,10 +49,10 @@ public class ItemSpawner : MonoBehaviour
         }
         else
         {
-            Debug.LogError("ItemSpawner: 'Player' ÅÂ±×¸¦ °¡Áø ¿ÀºêÁ§Æ®¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù.");
+            Debug.LogError("ItemSpawner: 'Player' íƒœê·¸ë¥¼ ê°€ì§„ ì˜¤ë¸Œì íŠ¸ë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
         }
 
-        // ¸ŞÀÎ Ä«¸Ş¶ó ÂüÁ¶
+        // ë©”ì¸ ì¹´ë©”ë¼ ì°¸ì¡°
         mainCamera = Camera.main;
     }
 
@@ -63,9 +70,9 @@ public class ItemSpawner : MonoBehaviour
     }
 
     /// <summary>
-    /// (ÇÑÁ¾¹Î)¾ÆÀÌÅÛÀ» »ı¼º °¡´ÉÇÑ À§Ä¡¿¡ ½ºÆùÇÏ°í, Á¶°Ç¿¡ ¸ÂÁö ¾ÊÀ¸¸é »ı¼ºÇÏÁö ¾Ê½À´Ï´Ù.
-    /// - Ä«¸Ş¶ó È­¸é ¾ÈÀÌ¸é »ı¼º ¾È ÇÔ
-    /// - Àå¾Ö¹°°ú °ãÄ¡¸é »ı¼º ¾È ÇÔ
+    /// (í•œì¢…ë¯¼) ì•„ì´í…œì„ ìƒì„± ê°€ëŠ¥í•œ ìœ„ì¹˜ì— ìŠ¤í°í•˜ê³ , ì¡°ê±´ì— ë§ì§€ ì•Šìœ¼ë©´ ìƒì„±í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
+    /// - ì¹´ë©”ë¼ í™”ë©´ ì•ˆì´ë©´ ìƒì„± ì•ˆ í•¨
+    /// - ì¥ì• ë¬¼ê³¼ ê²¹ì¹˜ë©´ ìƒì„± ì•ˆ í•¨
     /// </summary>
     void TrySpawnItem()
     {
@@ -73,28 +80,28 @@ public class ItemSpawner : MonoBehaviour
 
         Vector2 spawnPos = GetFrontSpawnPos();
 
-        // Ä«¸Ş¶ó ¿À¸¥ÂÊ °æ°èº¸´Ù ¾ÈÂÊÀÌ¸é »ı¼º X
+        // ì¹´ë©”ë¼ ì˜¤ë¥¸ìª½ ê²½ê³„ë³´ë‹¤ ì•ˆìª½ì´ë©´ ìƒì„± X
         float cameraRightEdge = mainCamera.ViewportToWorldPoint(new Vector3(1, 0.5f, 0)).x;
         if (spawnPos.x <= cameraRightEdge) return;
 
-        // Àå¾Ö¹°°ú °ãÄ¡´ÂÁö È®ÀÎ
+        // âœ… ì—¬ê¸°! ì¥ì• ë¬¼ê³¼ ê²¹ì¹˜ë©´ ìƒì„± X
         bool overlaps = Physics2D.OverlapCircle(spawnPos, overlapCheckRadius, obstacleLayer);
         if (overlaps) return;
 
-        // ¾ÆÀÌÅÛ »ı¼º
+        // ì•„ì´í…œ ìƒì„±
         int index = Random.Range(0, itemPrefabs.Length);
         Instantiate(itemPrefabs[index], spawnPos, Quaternion.identity);
     }
 
     /// <summary>
-    /// (ÇÑÁ¾¹Î)ÇÃ·¹ÀÌ¾î ¾ÕÂÊ ÁöÁ¤ °Å¸®¿Í ¼öÁ÷ ¹üÀ§ ³»¿¡¼­,
-    /// È­¸é ¹ÛÀ¸·Î ¹ş¾î³­ À§Ä¡¸¦ °è»êÇÏ¿© ¹İÈ¯ÇÕ´Ï´Ù.
+    /// (í•œì¢…ë¯¼) í”Œë ˆì´ì–´ ì•ìª½ ì§€ì • ê±°ë¦¬ì™€ ìˆ˜ì§ ë²”ìœ„ ë‚´ì—ì„œ,
+    /// í™”ë©´ ë°–ìœ¼ë¡œ ë²—ì–´ë‚œ ìœ„ì¹˜ë¥¼ ê³„ì‚°í•˜ì—¬ ë°˜í™˜í•©ë‹ˆë‹¤.
     /// </summary>
-    /// <returns>ÇÃ·¹ÀÌ¾î ±âÁØ ¾ÕÂÊ ·£´ı ½ºÆù À§Ä¡ (Vector2)</returns>
+    /// <returns>í”Œë ˆì´ì–´ ê¸°ì¤€ ì•ìª½ ëœë¤ ìŠ¤í° ìœ„ì¹˜ (Vector2)</returns>
     Vector2 GetFrontSpawnPos()
     {
         float x = player.position.x + forwardDistance;
-        float y = player.position.y + Random.Range(-verticalRange, verticalRange);
+        float y = groundY + Random.Range(-verticalRange, verticalRange); // í”Œë ˆì´ì–´ ì í”„ ë¬´ì‹œ
         return new Vector2(x, y);
     }
 }
