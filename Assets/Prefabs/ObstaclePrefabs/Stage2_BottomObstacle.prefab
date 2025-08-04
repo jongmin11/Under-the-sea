@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7016791976892516134}
   - component: {fileID: 570016081361362552}
   - component: {fileID: 8750532860852768569}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stage2_BottomObstacle
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -340,7 +340,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -1}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -351,5 +351,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.2, y: 3.2}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0

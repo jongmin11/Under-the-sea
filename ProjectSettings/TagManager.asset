@@ -8,8 +8,6 @@ TagManager:
   - BackGround
   - Obstacle
   - Block
-  - PlayerBullet
-  - EnemyText
   layers:
   - Default
   - TransparentFX
@@ -17,8 +15,8 @@ TagManager:
   - ground
   - Water
   - UI
-  - EnemyBullet
-  - EnemyText
+  - obstacle
+  - 
   - 
   - 
   - 

@@ -353,9 +353,9 @@ GameObject:
   - component: {fileID: 22534234}
   - component: {fileID: 22534236}
   - component: {fileID: 22534235}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SeeGround001
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1024,9 +1024,9 @@ GameObject:
   - component: {fileID: 145800784}
   - component: {fileID: 145800786}
   - component: {fileID: 145800785}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CaveGround002
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1154,9 +1154,9 @@ GameObject:
   - component: {fileID: 150530321}
   - component: {fileID: 150530323}
   - component: {fileID: 150530322}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SeeGround001
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4773,9 +4773,9 @@ GameObject:
   - component: {fileID: 763668265}
   - component: {fileID: 763668267}
   - component: {fileID: 763668266}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SeeGround001
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5678,7 +5678,7 @@ GameObject:
   - component: {fileID: 949662542}
   m_Layer: 0
   m_Name: background3
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5847,9 +5847,9 @@ GameObject:
   - component: {fileID: 962977951}
   - component: {fileID: 962977953}
   - component: {fileID: 962977952}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CaveGround002
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6292,7 +6292,7 @@ GameObject:
   - component: {fileID: 1054271835}
   m_Layer: 0
   m_Name: Balcksquare
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6357,13 +6357,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1054271834}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0.004026501, y: -0, z: -0, w: 0.9999919}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1940356339}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0.461, y: 0, z: 0}
 --- !u!1 &1085835160
 GameObject:
   m_ObjectHideFlags: 0
@@ -6765,9 +6765,9 @@ GameObject:
   - component: {fileID: 1162481788}
   - component: {fileID: 1162481790}
   - component: {fileID: 1162481789}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SeeGround001
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7947,9 +7947,9 @@ GameObject:
   - component: {fileID: 1417334571}
   - component: {fileID: 1417334573}
   - component: {fileID: 1417334572}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CaveGround002
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8151,6 +8151,63 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &1501520347
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 255081330806893164, guid: e5c04c73b26379243ad204f9ee7b7406, type: 3}
+      propertyPath: m_Name
+      value: CoinItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 7176142437313782801, guid: e5c04c73b26379243ad204f9ee7b7406, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7176142437313782801, guid: e5c04c73b26379243ad204f9ee7b7406, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7176142437313782801, guid: e5c04c73b26379243ad204f9ee7b7406, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7176142437313782801, guid: e5c04c73b26379243ad204f9ee7b7406, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7176142437313782801, guid: e5c04c73b26379243ad204f9ee7b7406, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7176142437313782801, guid: e5c04c73b26379243ad204f9ee7b7406, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7176142437313782801, guid: e5c04c73b26379243ad204f9ee7b7406, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7176142437313782801, guid: e5c04c73b26379243ad204f9ee7b7406, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7176142437313782801, guid: e5c04c73b26379243ad204f9ee7b7406, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7176142437313782801, guid: e5c04c73b26379243ad204f9ee7b7406, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e5c04c73b26379243ad204f9ee7b7406, type: 3}
 --- !u!1 &1512803803
 GameObject:
   m_ObjectHideFlags: 0
@@ -8162,9 +8219,9 @@ GameObject:
   - component: {fileID: 1512803804}
   - component: {fileID: 1512803806}
   - component: {fileID: 1512803805}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SwampGround001
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8720,9 +8777,9 @@ GameObject:
   - component: {fileID: 1647050772}
   - component: {fileID: 1647050774}
   - component: {fileID: 1647050773}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SwampGround001
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8851,7 +8908,7 @@ GameObject:
   - component: {fileID: 1681311054}
   m_Layer: 0
   m_Name: background3
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9408,13 +9465,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1698954477}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.21, y: -2.95, z: 0}
+  m_LocalRotation: {x: -0, y: 0.009430227, z: -0, w: 0.99995553}
+  m_LocalPosition: {x: -0.21, y: -2.97, z: 2.8103378e-10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 1.081, z: 0}
 --- !u!1 &1699330896
 GameObject:
   m_ObjectHideFlags: 0
@@ -9727,9 +9784,9 @@ GameObject:
   - component: {fileID: 1760485867}
   - component: {fileID: 1760485869}
   - component: {fileID: 1760485868}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SwampGround001
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9978,9 +10035,9 @@ GameObject:
   - component: {fileID: 1778626455}
   - component: {fileID: 1778626457}
   - component: {fileID: 1778626456}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CaveGround002
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10242,9 +10299,9 @@ GameObject:
   - component: {fileID: 1816475380}
   - component: {fileID: 1816475382}
   - component: {fileID: 1816475381}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SwampGround001
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10817,9 +10874,9 @@ GameObject:
   - component: {fileID: 1878455958}
   - component: {fileID: 1878455960}
   - component: {fileID: 1878455959}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CaveGround002
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11054,10 +11111,14 @@ MonoBehaviour:
   - {fileID: 255081330806893164, guid: e5c04c73b26379243ad204f9ee7b7406, type: 3}
   forwardDistance: 15
   verticalRange: 2
+  groundY: -3
   spawnInterval: 0.5
-  obstacleLayer:
+  groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 64
   overlapCheckRadius: 0.5
 --- !u!4 &1901748071
 Transform:
@@ -11085,9 +11146,9 @@ GameObject:
   - component: {fileID: 1921378371}
   - component: {fileID: 1921378373}
   - component: {fileID: 1921378372}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SwampGround001
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11215,9 +11276,9 @@ GameObject:
   - component: {fileID: 1928402721}
   - component: {fileID: 1928402723}
   - component: {fileID: 1928402722}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SeeGround001
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12415,3 +12476,4 @@ SceneRoots:
   - {fileID: 1698954480}
   - {fileID: 797818530}
   - {fileID: 286135231}
+  - {fileID: 1501520347}

@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
         rigidbody = GetComponent<Rigidbody2D>();
         box = GetComponent<BoxCollider2D>();
         gameOverManager = FindObjectOfType<GameOver>();
+        rigidbody.freezeRotation = true;
     }
 
     // Update is called once per frame
@@ -109,7 +110,7 @@ public class Player : MonoBehaviour
                 
             }
         }
-        else if (collision.gameObject.CompareTag("Block"))
+        else if (collision.gameObject.CompareTag("Obstacle"))
         {
             animator.SetTrigger("Dead");
             Dead = true;
