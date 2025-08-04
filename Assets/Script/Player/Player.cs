@@ -8,6 +8,9 @@ public class Player : MonoBehaviour
     BoxCollider2D box;
     Rigidbody2D rigidbody;
 
+    private AudioSource audioSource;
+    public AudioClip jumpSound;
+    public AudioClip DeadSound;
 
     public float Speed = 1.0f;
     public float JumpPower = 10f;
@@ -28,6 +31,7 @@ public class Player : MonoBehaviour
         box = GetComponent<BoxCollider2D>();
         gameOverManager = FindObjectOfType<GameOver>();
         rigidbody.freezeRotation = true;
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -41,6 +45,10 @@ public class Player : MonoBehaviour
                 {
                     animator.SetInteger("doDead", 0);
                 }
+                if (DeadSound != null && audioSource != null)
+                {
+                    audioSource.PlayOneShot(DeadSound);
+                }
             }
         }
         else
@@ -50,6 +58,12 @@ public class Player : MonoBehaviour
             {
                 Jumps = true;
                 grounds = false;
+
+                if (jumpSound != null && audioSource != null)
+                {
+                    audioSource.PlayOneShot(jumpSound);
+                    audioSource.PlayOneShot(jumpSound, 0.6f);
+                }
             }
 
             else if (Input.GetKeyDown(KeyCode.LeftShift) && grounds)
@@ -83,7 +97,7 @@ public class Player : MonoBehaviour
             Jumps = false;
         }
 
-        if (rigidbody.velocity.y < 0f && !Drop)
+        if (rigidbody.velocity.y < 1f && !Drop)
         {
             Drop = true;
             animator.SetBool("Drop", Drop);
