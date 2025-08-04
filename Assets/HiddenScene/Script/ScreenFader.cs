@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-
+using System;
 public class ScreenFader : MonoBehaviour
 {
     public Image fadeImage;
@@ -10,47 +10,41 @@ public class ScreenFader : MonoBehaviour
 
     private Coroutine currentRoutine;
 
-    public void FadeOut(Color? color = null, float? duration = null)
+    public void FadeOut(Color color, float duration, Action onComplete)
     {
-        Color c = color ?? defaultFadeColor;
-        float time = duration ?? defaultFadeDuration;
-
         fadeImage.gameObject.SetActive(true);
 
-        if (currentRoutine != null) StopCoroutine(currentRoutine);
-        currentRoutine = StartCoroutine(FadeRoutine(1f, 0f, c, time));
+        if (currentRoutine != null)
+            StopCoroutine(currentRoutine);
+
+        currentRoutine = StartCoroutine(FadeRoutine(0f, 1f, color, duration, onComplete));
     }
 
-    public void FadeIn(Color? color = null, float? duration = null)
+    public void FadeIn(Color color, float duration)
     {
-        Color c = color ?? defaultFadeColor;
-        float time = duration ?? defaultFadeDuration;
-
         fadeImage.gameObject.SetActive(true);
 
-        if (currentRoutine != null) StopCoroutine(currentRoutine);
-        currentRoutine = StartCoroutine(FadeRoutine(0f, 1f, c, time));
+        if (currentRoutine != null)
+            StopCoroutine(currentRoutine);
+
+        currentRoutine = StartCoroutine(FadeRoutine(1f, 0f, color, duration, null));
     }
 
-    private IEnumerator FadeRoutine(float fromAlpha, float toAlpha, Color baseColor, float duration)
+    IEnumerator FadeRoutine(float fromAlpha, float toAlpha, Color color, float duration, Action onComplete)
     {
-        float t = 0f;
-        Color c = baseColor;
-        c.a = fromAlpha;
-        fadeImage.color = c;
+        float timeElapsed = 0f;
+        fadeImage.color = new Color(color.r, color.g, color.b, fromAlpha);
 
-        while (t < duration)
+        while (timeElapsed < duration)
         {
-            t += Time.unscaledDeltaTime;
-            float lerp = Mathf.Clamp01(t / duration);
-            c.a = Mathf.Lerp(fromAlpha, toAlpha, lerp);
-            fadeImage.color = c;
+            float t = timeElapsed / duration;
+            float alpha = Mathf.Lerp(fromAlpha, toAlpha, t);
+            fadeImage.color = new Color(color.r, color.g, color.b, alpha);
+            timeElapsed += Time.unscaledDeltaTime;
             yield return null;
         }
 
-        c.a = toAlpha;
-        fadeImage.color = c;
-
-
+        fadeImage.color = new Color(color.r, color.g, color.b, toAlpha);
+        onComplete?.Invoke(); // 💥 콜백 실행
     }
 }

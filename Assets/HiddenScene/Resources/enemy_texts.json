@@ -1,6 +1,6 @@
 ﻿[
     {
-        "content": "안녕하세요",
+        "content": "한종민",
         "spawnTime": 1.0,
         "fontSize": 0.075,
         "alpha": 1.0,
@@ -14,7 +14,7 @@
         "aiType": "FollowPlayer"
     },
     {
-        "content": "안녕하세요",
+        "content": "전진우",
         "spawnTime": 6,
         "fontSize": 0.07,
         "alpha": 1.0,
@@ -28,7 +28,7 @@
         "aiType": "Straight"
     },
     {
-        "content": "안녕하세요",
+        "content": "정지원",
         "spawnTime": 10,
         "fontSize": 0.07,
         "alpha": 1.0,
@@ -42,7 +42,7 @@
         "aiType": "FollowPlayer"
     },
     {
-        "content": "안녕하세요?",
+        "content": "이원혁",
         "spawnTime": 15,
         "fontSize": 0.08,
         "alpha": 1.0,
