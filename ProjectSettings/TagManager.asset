@@ -19,10 +19,10 @@ TagManager:
   - Water
   - UI
   - obstacle
-  - 
-  - 
-  - 
-  - 
+  - PlayerBullet
+  - Ally
+  - Player
+  - Enemy
   - 
   - 
   - 

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8102657815602094017}
   - component: {fileID: 2499103453185475474}
   - component: {fileID: 8350022765332863900}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: _Me
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 3344815959544745534}
   - component: {fileID: 3529387738742554671}
   - component: {fileID: -1104670369176590819}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: AllyFollower
   m_TagString: Ally
   m_Icon: {fileID: 0}
@@ -348,7 +348,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5935651046089457921}
   - component: {fileID: 1583219008390888321}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BackTriangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -433,7 +433,7 @@ GameObject:
   - component: {fileID: 8721103654418684729}
   - component: {fileID: 7137296918120929757}
   - component: {fileID: 2339659535125528982}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EmotionTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5320,7 +5320,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2304046908054600441}
   - component: {fileID: 9104634764340830625}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Triangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6716784092755518088}
   - component: {fileID: 3553681402477214619}
   - component: {fileID: 6276331072536991124}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: EnemyText3D
   m_TagString: EnemyText
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.148
+  m_Volume: 0.34
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -205,7 +205,7 @@ GameObject:
   - component: {fileID: 3825793941730351422}
   - component: {fileID: 5792540276602238458}
   - component: {fileID: 210411662684236608}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: _EnemyText3D
   m_TagString: Untagged
   m_Icon: {fileID: 0}

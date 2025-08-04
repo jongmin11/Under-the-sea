@@ -2,25 +2,43 @@
 
 public class Bullet : MonoBehaviour
 {
+    public float speed = 10f;
     public float lifeTime = 3f;
-    public int damage = 1;
+    public float damage = 1f;
 
-    void Start()
+    private void Start()
     {
-        Rigidbody rb = GetComponent<Rigidbody>();
-        if (rb != null)
-        {
-            rb.useGravity = false;
-            rb.isKinematic = false;
-        }
+        //  레이어 지정 (PlayerBullet)
+        gameObject.layer = LayerMask.NameToLayer("PlayerBullet");
 
-        Collider col = GetComponent<Collider>();
-        if (col != null)
-        {
-            col.isTrigger = true;
-        }
+        // 일정 시간 뒤 삭제
+        Destroy(gameObject, lifeTime);
 
-        // ✅ 플레이어랑 충돌 무시 설정
+        //  충돌 무시 설정 (Player, Ally)
+        IgnorePlayerAndAllies();
+    }
+
+    private void Update()
+    {
+        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("EnemyText"))
+        {
+            EnemyText3DAIController enemy = other.GetComponent<EnemyText3DAIController>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(1); 
+            }
+
+            Destroy(gameObject);
+        }
+    }
+
+    private void IgnorePlayerAndAllies()
+    {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
@@ -32,34 +50,15 @@ public class Bullet : MonoBehaviour
             }
         }
 
-        Destroy(gameObject, lifeTime);
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        // ✅ 플레이어에게 맞음
-        if (other.CompareTag("Player"))
+        GameObject[] allies = GameObject.FindGameObjectsWithTag("Ally");
+        foreach (GameObject ally in allies)
         {
-            var player = other.GetComponent<Me>();
-            if (player != null)
+            Collider allyCol = ally.GetComponent<Collider>();
+            Collider bulletCol = GetComponent<Collider>();
+            if (allyCol != null && bulletCol != null)
             {
-                player.TakeDamage(damage);
+                Physics.IgnoreCollision(bulletCol, allyCol);
             }
-
-            return;
-        }
-
-        // ✅ 적에게 맞음
-        if (other.CompareTag("EnemyText"))
-        {
-            var enemy = other.GetComponent<EnemyText3DAIController>();
-            if (enemy != null)
-            {
-                enemy.TakeDamage(damage);
-                enemy.PlayDeathSFX();
-            }
-
-            Destroy(gameObject);
         }
     }
 }

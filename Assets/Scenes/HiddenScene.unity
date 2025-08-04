@@ -304,6 +304,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 107721536}
   m_CullTransparentMesh: 1
+--- !u!1 &197728829
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 197728831}
+  - component: {fileID: 197728830}
+  m_Layer: 0
+  m_Name: AllySpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &197728830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197728829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a201f3bf0479bf42a51816560b6ab5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allyPrefab: {fileID: 2849485626037338325, guid: e05a13bef3dac3d49afabe10efbb95af, type: 3}
+  allyCount: 5
+  player: {fileID: 5343800086630097758}
+--- !u!4 &197728831
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197728829}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 331.53888, y: 44.222134, z: 272.51642}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &432502099
 GameObject:
   m_ObjectHideFlags: 0
@@ -1705,7 +1752,7 @@ GameObject:
   - component: {fileID: 8311302754728359625}
   - component: {fileID: 2417123288005012122}
   - component: {fileID: 8125897793485763220}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: _Me
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1842,7 +1889,7 @@ GameObject:
   - component: {fileID: 8562778510791184069}
   - component: {fileID: 3264808393805047606}
   - component: {fileID: 3737749069138815271}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Me
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1875,7 +1922,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5871122329439365129}
   - component: {fileID: 1647605837919064713}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BackTriangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2042,7 +2089,7 @@ GameObject:
   - component: {fileID: 8800689093642220081}
   - component: {fileID: 6929074106341585109}
   - component: {fileID: 2548441969207355550}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: EmotionTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6813,7 +6860,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2079642680578544625}
   - component: {fileID: 9043202346749479081}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Triangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6960,3 +7007,4 @@ SceneRoots:
   - {fileID: 461332498}
   - {fileID: 1138026190}
   - {fileID: 681602460}
+  - {fileID: 197728831}

@@ -49,12 +49,12 @@ public class EnemyText3DAIController : MonoBehaviour
     {
         if (audioSource != null && deathClip != null)
         {
-            // 🔊 새로운 오브젝트 생성해서 그 안에서 소리 재생
+            // 🔊새로운 오브젝트 생성해서 그 안에서 소리 재생
             GameObject audioObj = new GameObject("Temp_DeathSFX");
             AudioSource tempAudio = audioObj.AddComponent<AudioSource>();
             tempAudio.clip = deathClip;
             tempAudio.volume = audioSource.volume;         // 기존 볼륨 유지
-            tempAudio.outputAudioMixerGroup = audioSource.outputAudioMixerGroup; // 믹서도 복사 (필요시)
+            tempAudio.outputAudioMixerGroup = audioSource.outputAudioMixerGroup; 
             tempAudio.Play();
 
             // 소리 끝나면 제거
@@ -72,7 +72,6 @@ public class EnemyText3DAIController : MonoBehaviour
 
         if (textMesh == null)
         {
-            Debug.LogError("❌ TextMesh 없음");
             return;
         }
 
@@ -89,7 +88,7 @@ public class EnemyText3DAIController : MonoBehaviour
 
         player = playerRef;
 
-        // ✅ 플레이어 Z값 따라가기
+        // 플레이어 Z값 따라가기
         if (player != null)
         {
             Vector3 pos = transform.position;
@@ -134,7 +133,7 @@ public class EnemyText3DAIController : MonoBehaviour
         if (rend == null) return;
 
         Vector3 size = rend.bounds.size;
-        size.z = 20f; // 💥 여기다 Z축 빵 키워!
+        size.z = 20f;
         col.size = size;
 
         col.center = rend.bounds.center - transform.position;
@@ -146,7 +145,7 @@ public class EnemyText3DAIController : MonoBehaviour
         if (isDead) return;
         elapsed += Time.deltaTime;
 
-        // ✅ 계속해서 플레이어 Z값 따라가기
+        // 계속해서 플레이어 Z값 따라가기
         if (player != null)
         {
             Vector3 pos = transform.position;
@@ -238,8 +237,19 @@ public class EnemyText3DAIController : MonoBehaviour
     {
         if (isDead) return;
         hp -= dmg;
+        if (deathClip != null)
+        {
+            GameObject audioPlayer = new GameObject("TempDeathSound");
+            AudioSource tempAudio = audioPlayer.AddComponent<AudioSource>();
 
-        // ✅ 쉐이크 효과
+            tempAudio.spatialBlend = 0f;             // 2D
+            tempAudio.outputAudioMixerGroup = null;  // 믹서 무시
+            tempAudio.volume = 1f;                   // 기본값 유지
+
+            tempAudio.PlayOneShot(deathClip, 0.1f);  
+            Destroy(audioPlayer, deathClip.length);
+        }
+        // 쉐이크 효과
         if (hitEffect != null)
         {
             hitEffect.Play(0.15f, 0.2f); // 흔들림: 0.15초 / 강도 0.2
@@ -249,11 +259,11 @@ public class EnemyText3DAIController : MonoBehaviour
         {
             isDead = true;
 
-            // ✅ 탄막 중지
+            // 탄막 중지
             if (shooter != null)
                 shooter.StopShooting();
 
-            // ✅ 파편 이펙트 (있을 경우)
+            // 파편 이펙트 (있을 경우)
             if (explosionEffectPrefab != null)
             {
                 GameObject fx = Instantiate(explosionEffectPrefab, transform.position, Quaternion.identity);
@@ -265,6 +275,7 @@ public class EnemyText3DAIController : MonoBehaviour
                 StartCoroutine(DelayedQuit());
             }
 
+            
             Destroy(gameObject);
         }
     }
