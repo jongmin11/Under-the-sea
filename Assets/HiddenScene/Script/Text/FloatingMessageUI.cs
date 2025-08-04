@@ -100,4 +100,24 @@ public class FloatingMessageUI : MonoBehaviour
         tmp.alpha = syncedAlpha;
         tmp.faceColor = new Color32(255, 255, 255, (byte)(syncedAlpha * 255));
     }
+
+    public void Initialize(PromptLine line)
+    {
+
+        tmp.alignment = TextAlignmentOptions.Center;
+
+        if (!string.IsNullOrEmpty(line.font))
+        {
+            TMP_FontAsset fontAsset = Resources.Load<TMP_FontAsset>(line.font);
+            if (fontAsset != null)
+                tmp.font = fontAsset;
+        }
+
+        // 중앙 정렬
+        RectTransform rt = GetComponent<RectTransform>();
+        rt.anchorMin = new Vector2(0.5f, 0.5f);
+        rt.anchorMax = new Vector2(0.5f, 0.5f);
+        rt.pivot = new Vector2(0.5f, 0.5f);
+        rt.anchoredPosition = Vector2.zero;
+    }
 }

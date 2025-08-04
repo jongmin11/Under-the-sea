@@ -788,8 +788,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messagePrefab: {fileID: 5679205768234539731, guid: 53f59e0e05acc9d48aebfd8fe33d2c1e, type: 3}
   spawnArea: {fileID: 1189944806}
-  defaultFont: {fileID: 11400000, guid: 1d760aebdd7508f4c8db31c235fb3f26, type: 2}
-  defaultFontSize: 32
 --- !u!4 &1138026190
 Transform:
   m_ObjectHideFlags: 0
@@ -1363,21 +1361,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 173a6c79c3322374b997d2262d51a667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  promptLines:
+  - id: 1
+    text: "\uD3EC\uAE30     \uD558\uC2DC   \uACA0\uC2B5\uB2C8 \uAE4C?"
+    font: 
+    fontSize: 20
+    alpha: 1
+  - id: 2
+    text: dwdwdwdw
+    font: 
+    fontSize: 20
+    alpha: 1
+  supportLines:
+  - id: 1
+    text: "\uC548\uB155\uD558\uC138\uC6941111111111."
+    font: 
+    fontSize: 34
+    alpha: 1
+  - id: 2
+    text: "\uC548\uB155"
+    font: 
+    fontSize: 20
+    alpha: 0.7
+  defaultPromptFont: {fileID: 11400000, guid: dbfc95250542eb746aff872e9a5babf1, type: 2}
+  defaultSupportFont: {fileID: 11400000, guid: 1d760aebdd7508f4c8db31c235fb3f26, type: 2}
+  typingSpeed: 0.06
   dialoguePanel: {fileID: 1066644789}
   promptText: {fileID: 1307326700}
   choiceGroupTransform: {fileID: 1245520849}
   yesButton: {fileID: 1318992699}
   noButton: {fileID: 551591032}
-  waitAfterFade: 2
-  typingSpeed: 0.06
-  slideDistance: 300
-  slideDuration: 0.4
-  typewriter: {fileID: 461332497}
   uiGraphicsToFade:
   - {fileID: 1307326700}
   - {fileID: 1318992700}
   - {fileID: 551591033}
   - {fileID: 1066644791}
+  typewriter: {fileID: 461332497}
 --- !u!4 &1493520505
 Transform:
   m_ObjectHideFlags: 0
@@ -1450,7 +1469,7 @@ MonoBehaviour:
     m_Bits: 64
   enemyTextLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   maxHP: 3
   hitEffectPrefab: {fileID: 830576869235474448, guid: bc54ab2714ba92a47bc3e970f985de47, type: 3}
   disappearDuration: 1.5
