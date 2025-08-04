@@ -9,6 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3722674317826064483}
+  - component: {fileID: 2324075749674834174}
+  - component: {fileID: 1791310557481090933}
+  - component: {fileID: 6532415925424370683}
   m_Layer: 5
   m_Name: MessageWrapper
   m_TagString: Untagged
@@ -25,7 +28,7 @@ RectTransform:
   m_GameObject: {fileID: 3355402400909482442}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.3890579, y: 2.3890579, z: 2.3890579}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 664999873045279323}
@@ -36,6 +39,57 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2324075749674834174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3355402400909482442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0aef25ff96c4f8e409f1116bbd902330, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floatAmplitude: 10
+  floatSpeed: 1
+  shakeAmount: 5
+  shakeSpeed: 2
+  typingSpeed: 0.05
+--- !u!114 &1791310557481090933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3355402400909482442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandHeight: 0
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
+--- !u!222 &6532415925424370683
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3355402400909482442}
+  m_CullTransparentMesh: 1
 --- !u!1 &4964700360787824411
 GameObject:
   m_ObjectHideFlags: 0
@@ -47,7 +101,7 @@ GameObject:
   - component: {fileID: 664999873045279323}
   - component: {fileID: 963161940701707209}
   - component: {fileID: 5024417871007234664}
-  - component: {fileID: 543221347646945019}
+  - component: {fileID: 8664333349510897350}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -69,10 +123,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3722674317826064483}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 163.16, y: 72.62}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &963161940701707209
 CanvasRenderer:
@@ -165,13 +219,13 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -153.80573, w: 20.878542}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &543221347646945019
+--- !u!114 &8664333349510897350
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -180,11 +234,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 4964700360787824411}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0aef25ff96c4f8e409f1116bbd902330, type: 3}
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floatAmplitude: 10
-  floatSpeed: 1
-  shakeAmount: 5
-  shakeSpeed: 2
-  typingSpeed: 0.05
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0

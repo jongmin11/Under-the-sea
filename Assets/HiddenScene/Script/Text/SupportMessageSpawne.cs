@@ -1,66 +1,100 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class SupportMessageSpawner : MonoBehaviour
 {
     public GameObject messagePrefab;
     [SerializeField] private RectTransform canvasTransform;
+
     private List<RectTransform> spawnedRects = new List<RectTransform>();
-    private List<Vector2> usedPositions = new List<Vector2>();
 
     public void SpawnMessage(PromptLine line)
     {
+        // 프리팹 인스턴스화
         GameObject go = Instantiate(messagePrefab, canvasTransform);
-        FloatingMessageUI floating = go.GetComponent<FloatingMessageUI>();
         RectTransform rt = go.GetComponent<RectTransform>();
-
-        // 위치 설정
-        Vector2 pos = GetNonOverlappingPosition();
-        rt.anchoredPosition = pos;
+        FloatingMessageUI floating = go.GetComponent<FloatingMessageUI>();
+        TextMeshProUGUI tmp = go.GetComponentInChildren<TextMeshProUGUI>();
 
         // 폰트 로드
         TMP_FontAsset fontAsset = null;
         if (!string.IsNullOrEmpty(line.font))
             fontAsset = Resources.Load<TMP_FontAsset>(line.font);
 
-        // 알파, 폰트 크기 기본값 보정
-        float size = line.fontSize;
+        float sizeFont = line.fontSize > 0 ? line.fontSize : 48f;
         float alpha = (line.alpha >= 0f && line.alpha <= 1f) ? line.alpha : 1f;
 
-        floating.Setup(line.text, fontAsset, size, alpha);
-        spawnedRects.Add(rt);
-    }
+        // 텍스트 미리 세팅 (텍스트가 들어가야 크기를 잴 수 있음)
+        floating.Setup(line.text, fontAsset, sizeFont, alpha);
 
-    private Vector2 GetNonOverlappingPosition()
-    {
-        const int maxAttempts = 100;
-        const float minDistance = 150f;
+        // 강제 렌더링 갱신 → 텍스트 실제 크기 측정
+        Canvas.ForceUpdateCanvases();
+        tmp.ForceMeshUpdate();
 
-        for (int attempt = 0; attempt < maxAttempts; attempt++)
+        Vector2 preferred = tmp.GetPreferredValues(line.text, 1000, 0);
+        Vector2 size = new Vector2(preferred.x, preferred.y);
+        float width = canvasTransform.rect.width * 0.8f;
+        float height = canvasTransform.rect.height * 0.8f;
+        // 충돌 회피 위치 계산
+        Vector2 pos = Vector2.zero;
+        bool found = false;
+        const int maxAttempts = 20;
+
+        for (int i = 0; i < maxAttempts; i++)
         {
-            // ✅ 넓은 영역에 퍼지도록 범위 설정
-            float x = Random.Range(-800f, 800f);
-            float y = Random.Range(-400f, 400f);
-            Vector2 candidate = new Vector2(x, y);
+            Vector2 candidate = new Vector2(
+            Random.Range(-width / 2f, width / 2f),
+            Random.Range(-height / 2f, height / 2f)
+            );
+            Rect myRect = new Rect(candidate - size / 2f, size);
 
-            bool overlaps = false;
-            foreach (Vector2 pos in usedPositions)
+            bool overlap = false;
+            foreach (RectTransform other in spawnedRects)
             {
-                if (Vector2.Distance(candidate, pos) < minDistance)
+                Rect otherRect = new Rect(
+                    other.anchoredPosition - other.sizeDelta / 2f,
+                    other.sizeDelta
+                );
+
+                if (myRect.Overlaps(otherRect))
                 {
-                    overlaps = true;
+                    overlap = true;
                     break;
                 }
             }
 
-            if (!overlaps)
+            if (!overlap)
             {
-                usedPositions.Add(candidate);
-                return candidate;
+                pos = candidate;
+                found = true;
+                break;
             }
         }
 
-        return new Vector2(Random.Range(-500f, 500f), Random.Range(-250f, 250f));
+        // 회피 실패 → 덮어쓰기 + 살짝 Y 밀기
+        if (!found)
+        {
+
+            float fallbackWidth = canvasTransform.rect.width * 0.8f;
+            float fallbackHeight = canvasTransform.rect.height * 0.8f;
+
+            float x = Random.Range(-fallbackWidth / 2f, fallbackWidth / 2f);
+            float y = Random.Range(-fallbackHeight / 2f, fallbackHeight / 2f);
+            pos = new Vector2(x, y);
+
+            go.transform.SetAsLastSibling();
+
+            // ✅ X축까지 밀어내기 추가
+            pos += new Vector2(
+                Random.Range(-60f, 60f),
+                Random.Range(30f, 80f)
+            );
+        }
+
+        // 🔐 타이핑 전에 자리 고정 (중요!)
+        rt.anchoredPosition = pos;
+        floating.SetOrigin(pos);
+        spawnedRects.Add(rt);
     }
 }

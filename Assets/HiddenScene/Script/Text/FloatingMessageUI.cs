@@ -22,7 +22,7 @@ public class FloatingMessageUI : MonoBehaviour
     void Awake()
     {
         rect = GetComponent<RectTransform>();
-
+        tmp = GetComponentInChildren<TextMeshProUGUI>();
         Canvas canvas = GetComponent<Canvas>();
         if (canvas == null)
             canvas = gameObject.AddComponent<Canvas>();
@@ -64,9 +64,6 @@ public class FloatingMessageUI : MonoBehaviour
         tmp.color = c;
 
         originalAlpha = c.a;
-
-        rect.anchoredPosition = Vector2.zero;
-        originalPos = rect.anchoredPosition;
 
         startTime = Time.unscaledTime;
 
@@ -124,6 +121,11 @@ public class FloatingMessageUI : MonoBehaviour
         rt.anchorMax = new Vector2(0.5f, 0.5f);
         rt.pivot = new Vector2(0.5f, 0.5f);
         rt.anchoredPosition = Vector2.zero;
+    }
+
+    public void SetOrigin(Vector2 pos)
+    {
+        originalPos = pos;
     }
 
 }
