@@ -71,6 +71,7 @@ public class FloatingMessageUI : MonoBehaviour
         startTime = Time.unscaledTime;
 
         StartCoroutine(TypeText());
+
     }
 
     System.Collections.IEnumerator TypeText()
@@ -120,4 +121,5 @@ public class FloatingMessageUI : MonoBehaviour
         rt.pivot = new Vector2(0.5f, 0.5f);
         rt.anchoredPosition = Vector2.zero;
     }
+
 }

@@ -5,18 +5,18 @@ using TMPro;
 public class SupportMessageSpawner : MonoBehaviour
 {
     public GameObject messagePrefab;
-    public RectTransform spawnArea; // 텍스트 퍼질 캔버스 영역
-
+    [SerializeField] private RectTransform canvasTransform;
     private List<RectTransform> spawnedRects = new List<RectTransform>();
+    private List<Vector2> usedPositions = new List<Vector2>();
 
     public void SpawnMessage(PromptLine line)
     {
-        GameObject go = Instantiate(messagePrefab, spawnArea);
+        GameObject go = Instantiate(messagePrefab, canvasTransform);
         FloatingMessageUI floating = go.GetComponent<FloatingMessageUI>();
         RectTransform rt = go.GetComponent<RectTransform>();
 
         // 위치 설정
-        Vector2 pos = GetNonOverlappingPosition(rt);
+        Vector2 pos = GetNonOverlappingPosition();
         rt.anchoredPosition = pos;
 
         // 폰트 로드
@@ -32,48 +32,35 @@ public class SupportMessageSpawner : MonoBehaviour
         spawnedRects.Add(rt);
     }
 
-    private Vector2 GetNonOverlappingPosition(RectTransform newRect)
+    private Vector2 GetNonOverlappingPosition()
     {
-        int maxAttempts = 20;
-        Vector2 finalPos = Vector2.zero;
+        const int maxAttempts = 100;
+        const float minDistance = 150f;
 
-        for (int i = 0; i < maxAttempts; i++)
+        for (int attempt = 0; attempt < maxAttempts; attempt++)
         {
-            Vector2 randomPos = GetRandomPositionInArea();
-            newRect.anchoredPosition = randomPos;
+            // ✅ 넓은 영역에 퍼지도록 범위 설정
+            float x = Random.Range(-800f, 800f);
+            float y = Random.Range(-400f, 400f);
+            Vector2 candidate = new Vector2(x, y);
 
-            Bounds newBounds = RectTransformUtility.CalculateRelativeRectTransformBounds(spawnArea, newRect);
-
-            bool hasOverlap = false;
-            foreach (RectTransform other in spawnedRects)
+            bool overlaps = false;
+            foreach (Vector2 pos in usedPositions)
             {
-                Bounds otherBounds = RectTransformUtility.CalculateRelativeRectTransformBounds(spawnArea, other);
-                if (newBounds.Intersects(otherBounds))
+                if (Vector2.Distance(candidate, pos) < minDistance)
                 {
-                    hasOverlap = true;
-                    Vector3 direction = (other.anchoredPosition - randomPos).normalized;
-                    other.anchoredPosition += (Vector2)direction * 30f;
+                    overlaps = true;
+                    break;
                 }
             }
 
-            if (!hasOverlap)
+            if (!overlaps)
             {
-                finalPos = randomPos;
-                break;
+                usedPositions.Add(candidate);
+                return candidate;
             }
         }
 
-        return finalPos;
-    }
-
-    private Vector2 GetRandomPositionInArea()
-    {
-        float width = spawnArea.rect.width;
-        float height = spawnArea.rect.height;
-
-        float x = Random.Range(-width / 2f, width / 2f);
-        float y = Random.Range(-height / 2f, height / 2f);
-
-        return new Vector2(x, y);
+        return new Vector2(Random.Range(-500f, 500f), Random.Range(-250f, 250f));
     }
 }

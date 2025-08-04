@@ -108,15 +108,14 @@ public class PromptTextController : MonoBehaviour
     {
         var spawner = FindObjectOfType<SupportMessageSpawner>();
 
-
         foreach (PromptLine line in supportLines)
         {
-            spawner.SpawnMessage(line);  // ✅ 퍼지기 + 각자 타이핑
+            spawner.SpawnMessage(line); // ✅ 이 시점에서 각 메시지가 동시에 퍼지고, 타이핑 시작
         }
 
-        yield return new WaitForSecondsRealtime(2.0f); // 타이핑 시간 확보
-
-        StartCoroutine(SlideInButtons());  // ✅ 슬라이드 등장은 타이핑 이후
+        // 연출 대기 → 슬라이드
+        yield return new WaitForSecondsRealtime(2.0f);
+        StartCoroutine(SlideInButtons());
     }
 
 
