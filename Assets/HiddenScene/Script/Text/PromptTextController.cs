@@ -99,8 +99,8 @@ public class PromptTextController : MonoBehaviour
 
         yield return typewriter.TypingRoutine(promptText, line.text, typingSpeed, null);
 
-        choiceGroupTransform.gameObject.SetActive(true);
-        SetButtonsInteractable(true);
+        // ✅ 기존 버튼 활성화 제거하고 슬라이드 방식으로 대체
+        StartCoroutine(SlideInButtons());
     }
 
     IEnumerator ShowSupportMessages()
@@ -241,5 +241,38 @@ public class PromptTextController : MonoBehaviour
             c.a = alpha;
             g.color = c;
         }
+    }
+
+    IEnumerator SlideInButtons()
+    {
+        RectTransform rt = choiceGroupTransform.GetComponent<RectTransform>();
+
+        Vector2 startPos = new Vector2(800f, rt.anchoredPosition.y);  // 화면 오른쪽 바깥
+        Vector2 targetPos = new Vector2(0f, rt.anchoredPosition.y);   // 중앙 위치
+
+        float duration = 0.5f;
+        float elapsed = 0f;
+
+        rt.anchoredPosition = startPos;
+        choiceGroupTransform.gameObject.SetActive(true);
+        SetButtonsInteractable(false);
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.unscaledDeltaTime;
+            float t = elapsed / duration;
+            rt.anchoredPosition = Vector2.Lerp(startPos, targetPos, t);
+            yield return null;
+        }
+
+        rt.anchoredPosition = targetPos;
+        SetButtonsInteractable(true);
+    }
+
+    void Start()
+    {
+        // 선택 버튼 처음에 오른쪽 화면 바깥에 위치시키기
+        RectTransform rt = choiceGroupTransform.GetComponent<RectTransform>();
+        rt.anchoredPosition = new Vector2(800f, rt.anchoredPosition.y); // ✅ 슬라이드 전 대기 위치
     }
 }
