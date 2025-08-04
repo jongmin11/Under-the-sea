@@ -101,7 +101,7 @@ public class ItemSpawner : MonoBehaviour
     Vector2 GetFrontSpawnPos()
     {
         float x = player.position.x + forwardDistance;
-        float y = groundY + Random.Range(-verticalRange, verticalRange); // 플레이어 점프 무시
+        float y = groundY + Random.Range(0f, verticalRange); // ⬅ 지면보다 위에서만 생성
         return new Vector2(x, y);
     }
 }
