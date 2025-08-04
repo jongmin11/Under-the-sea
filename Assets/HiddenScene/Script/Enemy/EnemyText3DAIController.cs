@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using UnityEngine;
-
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 [RequireComponent(typeof(BoxCollider))]
 public class EnemyText3DAIController : MonoBehaviour
 {
@@ -258,8 +260,22 @@ public class EnemyText3DAIController : MonoBehaviour
                 Destroy(fx, 2f); // 파티클 2초 후 삭제
             }
 
+            if (textMesh != null && textMesh.text.Trim() == "종료하기")
+            {
+                StartCoroutine(DelayedQuit());
+            }
+
             Destroy(gameObject);
         }
+    }
+
+    private IEnumerator DelayedQuit()
+    {
+        yield return new WaitForSeconds(1.0f);
+        Application.Quit();
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
     }
 
     public void ForceKill()

@@ -70,7 +70,7 @@
         "aiType": "Straight"
     },
     {
-        "content": "안녕하세요",
+        "content": "잘가",
         "spawnTime": 11,
         "fontSize": 0.07,
         "alpha": 1.0,
@@ -81,10 +81,10 @@
         "damage": 1,
         "posX": -1,
         "posY": 5,
-        "aiType": "FollowPlayer"
+        "aiType": "Straight"
     },
     {
-        "content": "안녕하세요",
+        "content": "아니요",
         "spawnTime": 19,
         "fontSize": 0.08,
         "alpha": 1.0,
@@ -95,10 +95,10 @@
         "damage": 2,
         "posX": 3,
         "posY": 5,
-        "aiType": "FollowPlayer"
+        "aiType": "ZigZag"
     },
     {
-        "content": "안녕하세요",
+        "content": "예",
         "spawnTime": 6,
         "fontSize": 0.075,
         "alpha": 1.0,
@@ -109,7 +109,7 @@
         "damage": 2,
         "posX": -3,
         "posY": 5,
-        "aiType": "FollowPlayer"
+        "aiType": "Straight"
     },
     {
         "content": "안녕하세요",
@@ -166,5 +166,19 @@
         "posX": 2,
         "posY": 5,
         "aiType": "FollowPlayer"
+    },
+    {
+        "content": "종료하기",
+        "spawnTime": 25,
+        "fontSize": 0.2,
+        "alpha": 1.0,
+        "downSpeed": 1.0,
+        "attackAngle": 180,
+        "hp": 300,
+        "isDestructible": true,
+        "damage": 3,
+        "posX": 2,
+        "posY": 5,
+        "aiType": "Straight"
     }
 ]

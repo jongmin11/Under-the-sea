@@ -2,272 +2,242 @@
 
     {
         "id": "g01",
-        "foreignText": "You're not just pixels. You're power.",
-        "text": "넌 그냥 픽셀이 아니야. 넌 힘이야.",
-        "font": "Fonts/NotoSerifKR-Light SDF",
-        "fontSize": 22,
+        "foreignText": "Take a breath. You’re still in this.",
+        "text": "숨 한번 고르고 가자. 넌 아직 이 안에 있어.",
+        "font": "Fonts/NotoSansSC-VariableFont_wght SDF",
+        "fontSize": 13,
         "alpha": 1.0
     },
-
     {
         "id": "g02",
         "foreignText": "你死了吗？重生就好。",
         "text": "죽었어? 리스폰하면 되지.",
-        "font": "Fonts/NotoSerifKR-Light SDF",
-        "fontSize": 22,
+        "font": "Fonts/NotoSansSC-VariableFont_wght SDF",
+        "fontSize": 13,
         "alpha": 1.0
     },
-
     {
         "id": "g03",
         "foreignText": "君のセーブデータは、まだここにある。",
         "text": "너의 세이브 데이터는 아직 여기에 있어.",
-        "font": "Fonts/NotoSerifKR-Light SDF",
-        "fontSize": 22,
+        "font": "Fonts/NotoSansSC-VariableFont_wght SDF",
+        "fontSize": 13,
         "alpha": 1.0
     },
-
     {
         "id": "g04",
         "foreignText": "C’est pas fini tant que t’as pas rage quit.",
         "text": "빡종하기 전까지는 아직 안 끝난 거야.",
-        "font": "Fonts/NotoSerifKR-Light SDF",
-        "fontSize": 22,
-        "alpha": 1.0
+        "font": "Fonts/NotoSansSC-VariableFont_wght SDF",
+        "fontSize": 13,
+        "alpha": 0.7
     },
-
     {
         "id": "g05",
-        "foreignText": "넌 내 힐러였어. 아직도 기다리고 있어.",
+        "foreignText": "You were my healer. I'm still waiting.",
         "text": "넌 내 힐러였어. 아직도 기다리고 있어.",
-        "font": "Fonts/NotoSerifKR-Light SDF",
-        "fontSize": 22,
+        "font": "Fonts/NotoSansSC-VariableFont_wght SDF",
+        "fontSize": 13,
         "alpha": 1.0
     },
-
     {
         "id": "g06",
         "foreignText": "Wir verlieren nicht, wir laden nur neu.",
         "text": "우린 지는 게 아니라 리로드하는 거야.",
-        "font": "Fonts/NotoSerifKR-Light SDF",
-        "fontSize": 22,
+        "font": "Fonts/NotoSansSC-VariableFont_wght SDF",
+        "fontSize": 13,
         "alpha": 1.0
     },
-
     {
         "id": "g07",
         "foreignText": "너도 죽었구나. 환영해, 고인물의 세계에.",
         "text": "너도 죽었구나. 환영해, 고인물의 세계에.",
-        "font": "Fonts/NotoSerifKR-Light SDF",
-        "fontSize": 22,
+        "font": "Fonts/NotoSansSC-VariableFont_wght SDF",
+        "fontSize": 13,
         "alpha": 1.0
     },
-
     {
         "id": "g08",
         "foreignText": "仲間が待ってるぞ。",
         "text": "동료들이 기다리고 있어.",
-        "font": "Fonts/NotoSerifKR-Light SDF",
-        "fontSize": 22,
-        "alpha": 1.0
+        "font": "Fonts/NotoSansSC-VariableFont_wght SDF",
+        "fontSize": 13,
+        "alpha": 0.2
     },
-
     {
         "id": "g09",
         "foreignText": "너 지금쯤 다시 컨티뉴 눌렀겠지?",
         "text": "너 지금쯤 다시 컨티뉴 눌렀겠지?",
-        "font": "Fonts/NotoSerifKR-Light SDF",
-        "fontSize": 22,
+        "font": "Fonts/NotoSansSC-VariableFont_wght SDF",
+        "fontSize": 13,
         "alpha": 1.0
     },
-
     {
         "id": "g10",
         "foreignText": "I know this game is hard, but you are harder.",
         "text": "이 게임이 어렵다는 건 알아. 근데 넌 더 강하잖아.",
-        "font": "Fonts/NotoSerifKR-Light SDF",
-        "fontSize": 22,
+        "font": "Fonts/NotoSansSC-VariableFont_wght SDF",
+        "fontSize": 13,
         "alpha": 1.0
     },
-
     {
         "id": "g11",
         "foreignText": "Ti sei fermato, ma non sei finito.",
         "text": "잠시 멈췄을 뿐이지, 끝난 게 아니야.",
-        "font": "Fonts/NotoSerifKR-Light SDF",
-        "fontSize": 22,
+        "font": "Fonts/NotoSansSC-VariableFont_wght SDF",
+        "fontSize": 13,
         "alpha": 1.0
     },
-
     {
         "id": "g12",
         "foreignText": "죽으면 다시 시작하면 돼. 우리가 하는 게임이 다 그렇잖아.",
         "text": "죽으면 다시 시작하면 돼. 우리가 하는 게임이 다 그렇잖아.",
-        "font": "Fonts/NotoSerifKR-Light SDF",
-        "fontSize": 22,
-        "alpha": 1.0
+        "font": "Fonts/NotoSansSC-VariableFont_wght SDF",
+        "fontSize": 13,
+        "alpha": 0.9
     },
-
     {
         "id": "g13",
         "foreignText": "ネバーギブアップ、プレイヤー。",
         "text": "포기하지 마, 플레이어.",
-        "font": "Fonts/NotoSerifKR-Light SDF",
-        "fontSize": 22,
-        "alpha": 1.0
+        "font": "Fonts/NotoSansSC-VariableFont_wght SDF",
+        "fontSize": 13,
+        "alpha": 0.7
     },
-
     {
         "id": "g14",
         "foreignText": "You beat the tutorial. You can beat this.",
         "text": "튜토리얼도 깼잖아. 이것도 깰 수 있어.",
-        "font": "Fonts/NotoSerifKR-Light SDF",
-        "fontSize": 22,
-        "alpha": 1.0
+        "font": "Fonts/NotoSansSC-VariableFont_wght SDF",
+        "fontSize": 13,
+        "alpha": 0.4
     },
-
     {
         "id": "g15",
         "foreignText": "파티원 전멸은 끝이 아니야. 이제부터 진짜야.",
         "text": "파티원 전멸은 끝이 아니야. 이제부터 진짜야.",
-        "font": "Fonts/NotoSerifKR-Light SDF",
-        "fontSize": 22,
-        "alpha": 1.0
+        "font": "Fonts/NotoSansSC-VariableFont_wght SDF",
+        "fontSize": 13,
+        "alpha": 0.6
     },
-
     {
         "id": "g16",
         "foreignText": "Ты не один. Мы с тобой.",
         "text": "너는 혼자가 아니야. 우리는 네 편이야.",
-        "font": "Fonts/NotoSerifKR-Light SDF",
-        "fontSize": 22,
-        "alpha": 1.0
+        "font": "Fonts/NotoSansSC-VariableFont_wght SDF",
+        "fontSize": 13,
+        "alpha": 0.7
     },
-
     {
         "id": "g17",
         "foreignText": "다시 시작하자. 리트라이 버튼은 아직 눌리지 않았어.",
         "text": "다시 시작하자. 리트라이 버튼은 아직 눌리지 않았어.",
-        "font": "Fonts/NotoSerifKR-Light SDF",
-        "fontSize": 22,
-        "alpha": 1.0
+        "font": "Fonts/NotoSansSC-VariableFont_wght SDF",
+        "fontSize": 13,
+        "alpha": 0.6
     },
-
     {
         "id": "g18",
         "foreignText": "Respawn, drink some potion, and let's go again.",
         "text": "리스폰하고 물약 하나 빨고 다시 가자.",
-        "font": "Fonts/NotoSerifKR-Light SDF",
-        "fontSize": 22,
-        "alpha": 1.0
+        "font": "Fonts/NotoSansSC-VariableFont_wght SDF",
+        "fontSize": 13,
+        "alpha": 0.4
     },
-
     {
         "id": "g19",
-        "foreignText": "너희 서버에서 보냈다. 다시 접속해.",
-        "text": "너희 서버에서 보냈다. 다시 접속해.",
-        "font": "Fonts/NotoSerifKR-Light SDF",
-        "fontSize": 22,
-        "alpha": 1.0
+        "foreignText": "우리 서버에서 보냈다. 다시 접속해.",
+        "text": "우리 서버에서 보냈다. 다시 접속해.",
+        "font": "Fonts/NotoSansSC-VariableFont_wght SDF",
+        "fontSize": 13,
+        "alpha": 0.1
     },
-
     {
         "id": "g20",
         "foreignText": "너의 클리어가 나의 버프가 되었어.",
         "text": "너의 클리어가 나의 버프가 되었어.",
-        "font": "Fonts/NotoSerifKR-Light SDF",
-        "fontSize": 22,
-        "alpha": 1.0
+        "font": "Fonts/NotoSansSC-VariableFont_wght SDF",
+        "fontSize": 13,
+        "alpha": 0.4
     },
-
     {
         "id": "g21",
         "foreignText": "Je continue parce que tu as commencé.",
         "text": "네가 시작했기에 나는 계속해.",
-        "font": "Fonts/NotoSerifKR-Light SDF",
-        "fontSize": 22,
-        "alpha": 1.0
+        "font": "Fonts/NotoSansSC-VariableFont_wght SDF",
+        "fontSize": 13,
+        "alpha": 0.6
     },
-
     {
         "id": "g22",
         "foreignText": "Respawn isn’t failure. It’s the next step.",
         "text": "리스폰은 실패가 아니야. 그건 다음 단계야.",
-        "font": "Fonts/NotoSerifKR-Light SDF",
-        "fontSize": 22,
-        "alpha": 1.0
+        "font": "Fonts/NotoSansSC-VariableFont_wght SDF",
+        "fontSize": 13,
+        "alpha": 0.1
     },
-
     {
         "id": "g23",
         "foreignText": "너의 부활에 모든 팀원이 기뻐했어.",
         "text": "너의 부활에 모든 팀원이 기뻐했어.",
-        "font": "Fonts/NotoSerifKR-Light SDF",
-        "fontSize": 22,
-        "alpha": 1.0
+        "font": "Fonts/NotoSansSC-VariableFont_wght SDF",
+        "fontSize": 13,
+        "alpha": 0.4
     },
-
     {
         "id": "g24",
         "foreignText": "もう一度だけ、立ち上がれ。",
         "text": "딱 한 번만 더, 다시 일어서.",
-        "font": "Fonts/NotoSerifKR-Light SDF",
-        "fontSize": 22,
+        "font": "Fonts/NotoSansSC-VariableFont_wght SDF",
+        "fontSize": 13,
         "alpha": 1.0
     },
-
     {
         "id": "g25",
         "foreignText": "너 없는 파티는 너무 조용했어.",
         "text": "너 없는 파티는 너무 조용했어.",
-        "font": "Fonts/NotoSerifKR-Light SDF",
-        "fontSize": 22,
-        "alpha": 1.0
+        "font": "Fonts/NotoSansSC-VariableFont_wght SDF",
+        "fontSize": 13,
+        "alpha": 0.7
     },
-
     {
         "id": "g26",
         "foreignText": "Ce n’est pas un game over. C’est un checkpoint.",
         "text": "이건 게임 오버가 아니라 체크포인트야.",
-        "font": "Fonts/NotoSerifKR-Light SDF",
-        "fontSize": 22,
-        "alpha": 1.0
+        "font": "Fonts/NotoSansSC-VariableFont_wght SDF",
+        "fontSize": 13,
+        "alpha": 0.6
     },
-
     {
         "id": "g27",
         "foreignText": "너의 스코어는 사라지지 않았어.",
         "text": "너의 스코어는 사라지지 않았어.",
-        "font": "Fonts/NotoSerifKR-Light SDF",
-        "fontSize": 22,
-        "alpha": 1.0
+        "font": "Fonts/NotoSansSC-VariableFont_wght SDF",
+        "fontSize": 13,
+        "alpha": 0.8
     },
-
     {
         "id": "g28",
         "foreignText": "Если ты здесь — ты еще не сдался.",
         "text": "네가 여기에 있다는 건, 아직 포기하지 않았다는 뜻이야.",
-        "font": "Fonts/NotoSerifKR-Light SDF",
-        "fontSize": 22,
-        "alpha": 1.0
+        "font": "Fonts/NotoSansSC-VariableFont_wght SDF",
+        "fontSize": 13,
+        "alpha": 0.4
     },
-
     {
         "id": "g29",
         "foreignText": "잠깐 쉬는 건 괜찮아. 로그아웃은 아니잖아?",
         "text": "잠깐 쉬는 건 괜찮아. 로그아웃은 아니잖아?",
-        "font": "Fonts/NotoSerifKR-Light SDF",
-        "fontSize": 22,
-        "alpha": 1.0
+        "font": "Fonts/NotoSansSC-VariableFont_wght SDF",
+        "fontSize": 13,
+        "alpha": 0.7
     },
-
     {
         "id": "g30",
         "foreignText": "君のログインは、世界に意味を与えた。",
         "text": "너의 로그인은 이 세계에 의미를 줬어.",
-        "font": "Fonts/NotoSerifKR-Light SDF",
-        "fontSize": 22,
-        "alpha": 1.0
+        "font": "Fonts/NotoSansSC-VariableFont_wght SDF",
+        "fontSize": 13,
+        "alpha": 0.5
     }
-
 ]

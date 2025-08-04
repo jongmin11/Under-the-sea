@@ -8,6 +8,9 @@ TagManager:
   - BackGround
   - Obstacle
   - Block
+  - PlayerBullet
+  - EnemyText
+  - Ally
   layers:
   - Default
   - TransparentFX

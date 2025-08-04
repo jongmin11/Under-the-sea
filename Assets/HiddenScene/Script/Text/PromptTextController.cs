@@ -3,6 +3,10 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 public class PromptTextController : MonoBehaviour
 {
     private HashSet<string> displayedMessageIds = new HashSet<string>();
@@ -140,6 +144,9 @@ public class PromptTextController : MonoBehaviour
     public void OnClickGiveUp()
     {
         Application.Quit();
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
     }
 
     IEnumerator FadeOutUIObjects(Graphic[] targets, float duration)
