@@ -19,7 +19,8 @@ public class EnemyText3DAIController : MonoBehaviour
     private float elapsed = 0f;
     private bool isDead = false;
     private int hp = 10;
-
+    public AudioSource audioSource;
+    public AudioClip deathClip;
     private enum Phase { Falling, AIStart }
     private Phase currentPhase = Phase.Falling;
     private Vector3 fallTarget;
@@ -42,9 +43,26 @@ public class EnemyText3DAIController : MonoBehaviour
     private EnemyTextHitEffect hitEffect;
     public GameObject explosionEffectPrefab;
 
+    public void PlayDeathSFX()
+    {
+        if (audioSource != null && deathClip != null)
+        {
+            // 🔊 새로운 오브젝트 생성해서 그 안에서 소리 재생
+            GameObject audioObj = new GameObject("Temp_DeathSFX");
+            AudioSource tempAudio = audioObj.AddComponent<AudioSource>();
+            tempAudio.clip = deathClip;
+            tempAudio.volume = audioSource.volume;         // 기존 볼륨 유지
+            tempAudio.outputAudioMixerGroup = audioSource.outputAudioMixerGroup; // 믹서도 복사 (필요시)
+            tempAudio.Play();
+
+            // 소리 끝나면 제거
+            Destroy(audioObj, deathClip.length);
+        }
+    }
     void Start()
     {
         hitEffect = GetComponentInChildren<EnemyTextHitEffect>();
+        audioSource = GetComponent<AudioSource>();
     }
     public void Setup(string content, float fontSize, Color color, float speedValue, float angleDeg, int hpValue, EnemyTextAIType ai, Transform playerRef)
     {

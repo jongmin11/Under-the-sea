@@ -104,6 +104,7 @@ public class Me : MonoBehaviour
             rbBullet.velocity = shootDir * bulletSpeed;
 
         }
+        GetComponent<PlayerSFX>()?.PlayShootSFX();
     }
 
     public void TakeDamage(int dmg)
@@ -112,6 +113,7 @@ public class Me : MonoBehaviour
 
         currentHP -= dmg;
 
+        GetComponent<PlayerSFX>()?.PlayHitSFX();
         if (hitShake != null) hitShake.Play();
         if (cameraShake != null) cameraShake.Shake(0.2f, 0.1f);
         if (hitEffectPrefab != null)
@@ -182,6 +184,7 @@ public class Me : MonoBehaviour
     {
         if (isDead) return;
         isDead = true;
+        GetComponent<PlayerSFX>()?.PlayDeathSFX();
         deathCount++;
 
         Time.timeScale = 0f;
