@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     public bool grounds = true;
     public bool Drop = false;
     float deathCool = 0f;
+    public bool godMode = false;
     private GameOver gameOverManager;
     // Start is called before the first frame update
     void Start()
@@ -106,6 +107,11 @@ public class Player : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Obstacle"))
         {
+            if (godMode)
+            {
+                Debug.Log("[GodMode] 장애물 충돌 무시됨");
+                return;
+            }
             animator.SetTrigger("Dead");
             Dead = true;
             deathCool = 1f;
