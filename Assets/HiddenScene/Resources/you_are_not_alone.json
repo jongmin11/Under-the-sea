@@ -1,0 +1,23 @@
+﻿[
+    {
+        "id": "1",
+        "text": "안녕하세요1.",
+        "font": "Fonts/NotoSerifKR-Light SDF",
+        "fontSize": 34,
+        "alpha": 1.0
+    },
+    {
+        "id": "2",
+        "text": "안녕하세요2.",
+        "font": "Fonts/NotoSerifKR-Light SDF",
+        "fontSize": 34,
+        "alpha": 0.9
+    },
+    {
+        "id": "3",
+        "text": "안녕하세요3.",
+        "font": "Fonts/NotoSerifKR-Light SDF",
+        "fontSize": 34,
+        "alpha": 0.7
+    }
+]

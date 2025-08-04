@@ -1,0 +1,32 @@
+﻿[
+    {
+        "id": "line01",
+        "text": "포기     하시   겠습니 까?",
+        "fontSize": 20,
+        "alpha": 1.0
+    },
+    {
+        "id": "line02",
+        "text": "문장 2",
+        "fontSize": 20,
+        "alpha": 1.0
+    },
+    {
+        "id": "line03",
+        "text": "문장 3",
+        "fontSize": 20,
+        "alpha": 1.0
+    },
+    {
+        "id": "line04",
+        "text": "문장 4",
+        "fontSize": 20,
+        "alpha": 1.0
+    },
+    {
+        "id": "line05",
+        "text": "문장 5",
+        "fontSize": 20,
+        "alpha": 1.0
+    }
+]
