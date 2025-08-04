@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 public class PromptTextController : MonoBehaviour
 {
+    private HashSet<string> displayedMessageIds = new HashSet<string>();
     private bool hasSlidIn = false;
     [Header("타이핑 설정")]
     public float typingSpeed = 0.02f;
@@ -106,11 +107,21 @@ public class PromptTextController : MonoBehaviour
 
     IEnumerator ShowSupportMessages()
     {
+        int messagesToShow = Random.Range(1, 5);
+        int shown = 0;
         var spawner = FindObjectOfType<SupportMessageSpawner>();
 
         foreach (PromptLine line in supportLines)
         {
-            spawner.SpawnMessage(line); // ✅ 이 시점에서 각 메시지가 동시에 퍼지고, 타이핑 시작
+            if (!displayedMessageIds.Contains(line.id))
+            {
+                spawner.SpawnMessage(line);
+                displayedMessageIds.Add(line.id);
+                shown++;
+
+                if (shown >= messagesToShow)
+                    break;
+            }
         }
 
         // 연출 대기 → 슬라이드

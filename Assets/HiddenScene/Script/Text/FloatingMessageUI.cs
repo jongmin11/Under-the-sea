@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-
+using System.Collections;
 public class FloatingMessageUI : MonoBehaviour
 {
     public float floatAmplitude = 10f;
@@ -12,7 +12,10 @@ public class FloatingMessageUI : MonoBehaviour
 
     private RectTransform rect;
     private TextMeshProUGUI tmp;
-    private string fullText = "";
+
+    private string textTyping = "";     // 외국어 (타이핑)
+    private string textTranslated = ""; // 한국어 (최종 번역)
+
     private float startTime;
     private Vector2 originalPos;
     private float originalAlpha = 1f;
@@ -23,6 +26,7 @@ public class FloatingMessageUI : MonoBehaviour
     {
         rect = GetComponent<RectTransform>();
         tmp = GetComponentInChildren<TextMeshProUGUI>();
+
         Canvas canvas = GetComponent<Canvas>();
         if (canvas == null)
             canvas = gameObject.AddComponent<Canvas>();
@@ -40,7 +44,7 @@ public class FloatingMessageUI : MonoBehaviour
         originalPos = rect.anchoredPosition;
     }
 
-    public void Setup(string message, TMP_FontAsset font, float fontSize, float alpha)
+    public void Setup(PromptLine line, TMP_FontAsset font, float fontSize, float alpha)
     {
         if (tmp == null)
         {
@@ -52,11 +56,11 @@ public class FloatingMessageUI : MonoBehaviour
             }
         }
 
-        fullText = message;
+        textTyping = line.foreignText;
+        textTranslated = line.text;
         tmp.text = "";
 
         if (font != null) tmp.font = font;
-
         tmp.fontSize = fontSize > 0 ? fontSize : 48f;
 
         Color c = tmp.color;
@@ -64,21 +68,51 @@ public class FloatingMessageUI : MonoBehaviour
         tmp.color = c;
 
         originalAlpha = c.a;
-
         startTime = Time.unscaledTime;
 
-        StartCoroutine(TypeText());
-
+        StartCoroutine(TypeForeignThenTranslateWithGlitch());
     }
 
-    System.Collections.IEnumerator TypeText()
+    IEnumerator TypeForeignThenTranslateWithGlitch()
     {
         tmp.text = "";
-        foreach (char c in fullText)
+
+        // ① 외국어 타이핑 출력
+        foreach (char c in textTyping)
         {
             tmp.text += c;
             yield return new WaitForSecondsRealtime(typingSpeed);
         }
+
+        yield return new WaitForSecondsRealtime(0.3f);
+
+        // ② 치지직 효과 출력
+        float glitchDuration = 0.4f;
+        float elapsed = 0f;
+
+        while (elapsed < glitchDuration)
+        {
+            tmp.text = GenerateGlitchedText(textTyping.Length);
+            elapsed += Time.unscaledDeltaTime;
+            yield return null;
+        }
+
+        // ③ 최종 번역 문장으로 교체
+        tmp.text = textTranslated;
+    }
+
+    string GenerateGlitchedText(int length)
+    {
+        const string glitchChars = "!@#$%^&*<>/?|1234567890-=+~";
+        System.Text.StringBuilder sb = new System.Text.StringBuilder();
+
+        for (int i = 0; i < length; i++)
+        {
+            char c = glitchChars[Random.Range(0, glitchChars.Length)];
+            sb.Append(c);
+        }
+
+        return sb.ToString();
     }
 
     void Update()
@@ -87,13 +121,13 @@ public class FloatingMessageUI : MonoBehaviour
         if (rect == null)
         {
             rect = GetComponent<RectTransform>();
-            if (rect == null) return;  // 그래도 없으면 포기
+            if (rect == null) return;
         }
+
         float floatOffset = Mathf.Sin(t * floatSpeed) * floatAmplitude;
         float shakeOffset = Mathf.Sin(t * shakeSpeed) * shakeAmount;
         rect.anchoredPosition = originalPos + new Vector2(shakeOffset, floatOffset);
 
-        // ✅ 알파 완전 동기화 (fadeImage와 1:1 동일)
         float syncedAlpha = (fadeImage != null) ? fadeImage.color.a : originalAlpha;
 
         Color c = tmp.color;
@@ -105,7 +139,6 @@ public class FloatingMessageUI : MonoBehaviour
 
     public void Initialize(PromptLine line)
     {
-
         tmp.alignment = TextAlignmentOptions.Center;
 
         if (!string.IsNullOrEmpty(line.font))
@@ -115,7 +148,6 @@ public class FloatingMessageUI : MonoBehaviour
                 tmp.font = fontAsset;
         }
 
-        // 중앙 정렬
         RectTransform rt = GetComponent<RectTransform>();
         rt.anchorMin = new Vector2(0.5f, 0.5f);
         rt.anchorMax = new Vector2(0.5f, 0.5f);
@@ -127,5 +159,4 @@ public class FloatingMessageUI : MonoBehaviour
     {
         originalPos = pos;
     }
-
 }
