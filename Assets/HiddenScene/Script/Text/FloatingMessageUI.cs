@@ -87,7 +87,11 @@ public class FloatingMessageUI : MonoBehaviour
     void Update()
     {
         float t = Time.unscaledTime - startTime;
-
+        if (rect == null)
+        {
+            rect = GetComponent<RectTransform>();
+            if (rect == null) return;  // 그래도 없으면 포기
+        }
         float floatOffset = Mathf.Sin(t * floatSpeed) * floatAmplitude;
         float shakeOffset = Mathf.Sin(t * shakeSpeed) * shakeAmount;
         rect.anchoredPosition = originalPos + new Vector2(shakeOffset, floatOffset);

@@ -67,12 +67,13 @@ public class Player : MonoBehaviour
     }
     public void FixedUpdate()
     {
+        if (Time.timeScale == 0f || Dead)
+        {
+            rigidbody.velocity = Vector2.zero;
+            return;
+        }
 
         rigidbody.velocity = new Vector2(Speed, rigidbody.velocity.y);
-
-        if (Dead)
-            return;
-
 
         if (Jumps)
         {
@@ -81,18 +82,11 @@ public class Player : MonoBehaviour
             Jumps = false;
         }
 
-
-        Debug.Log($"슬라이드 {rigidbody.velocity.y}");
-
-        if (rigidbody.velocity.y < 0f) // 최대 높이 값   
+        if (rigidbody.velocity.y < 0f && !Drop)
         {
-            if (!Drop)
-            {
-                Drop = true;
-                animator.SetBool("Drop",Drop);
-            }
+            Drop = true;
+            animator.SetBool("Drop", Drop);
         }
-
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
