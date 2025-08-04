@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 public class PromptTextController : MonoBehaviour
 {
+    private bool hasSlidIn = false;
     [Header("타이핑 설정")]
     public float typingSpeed = 0.02f;
 
@@ -105,26 +106,17 @@ public class PromptTextController : MonoBehaviour
 
     IEnumerator ShowSupportMessages()
     {
-        if (supportLines == null || supportLines.Length == 0)
-            yield break;
+        var spawner = FindObjectOfType<SupportMessageSpawner>();
 
-        choiceGroupTransform.gameObject.SetActive(false);
 
-        int count = Mathf.Min(4, supportLines.Length);
-
-        for (int i = 0; i < count; i++)
+        foreach (PromptLine line in supportLines)
         {
-            PromptLine line = supportLines[i];
-
-            var spawner = FindObjectOfType<SupportMessageSpawner>();
-            if (spawner != null)
-                spawner.SpawnMessage(line);
-
-            yield return new WaitForSecondsRealtime(1.2f);
+            spawner.SpawnMessage(line);  // ✅ 퍼지기 + 각자 타이핑
         }
 
-        choiceGroupTransform.gameObject.SetActive(true);
-        SetButtonsInteractable(true);
+        yield return new WaitForSecondsRealtime(2.0f); // 타이핑 시간 확보
+
+        StartCoroutine(SlideInButtons());  // ✅ 슬라이드 등장은 타이핑 이후
     }
 
 
@@ -224,7 +216,9 @@ public class PromptTextController : MonoBehaviour
 
         // UI는 알파값으로 전부 숨김 처리
         SetUIAlpha(0f);
-
+        hasSlidIn = false;
+        RectTransform rt = choiceGroupTransform.GetComponent<RectTransform>();
+        rt.anchoredPosition = new Vector2(800f, rt.anchoredPosition.y);
     }
 
     private void SetButtonsInteractable(bool state)
@@ -245,15 +239,19 @@ public class PromptTextController : MonoBehaviour
 
     IEnumerator SlideInButtons()
     {
+        if (hasSlidIn) yield break;  // ✅ 이미 슬라이드 했으면 다시 안 함
+        hasSlidIn = true;
+
         RectTransform rt = choiceGroupTransform.GetComponent<RectTransform>();
 
         Vector2 startPos = new Vector2(800f, rt.anchoredPosition.y);  // 화면 오른쪽 바깥
         Vector2 targetPos = new Vector2(0f, rt.anchoredPosition.y);   // 중앙 위치
 
+        rt.anchoredPosition = startPos; // ✅ 매번 초기화 보장
+
         float duration = 0.5f;
         float elapsed = 0f;
 
-        rt.anchoredPosition = startPos;
         choiceGroupTransform.gameObject.SetActive(true);
         SetButtonsInteractable(false);
 
